@@ -155,47 +155,47 @@ Request → Application → Metrics → Monitoring → SRE Decision
 
 ### Diagram 2 — Error Budget Burn
 ```
-+-------------------------------------+
-                                | 1. Set SLO Target (The Reliability Goal) |
-                                |   (e.g., 99.9% availability over 30 days) |
-                                +-------------------------------------+
-                                                   |
-                                                   v
-                                +-------------------------------------+
-                                | 2. Calculate Error Budget (The Allowance) |
-                                |   (From 99.9% SLO: 0.1% failure = 43 minutes over 30 days) |
-                                +-------------------------------------+
-                                                   |
-                                                   |  (This budget can be consumed by...)
-                                                   v
-                       +------------------------------------------------------------+
-                       | 3. Failures / Errors Occur (The "Budget Burn")             |
-                       |   - Each incident "burns" a portion of the budget.          |
-                       |   - Example: A single 10-minute outage "burns" 10 minutes. |
-                       |     (Budget remaining: 43 - 10 = 33 minutes)               |
-                       +------------------------------------------------------------+
-                                                   |
-                                                   |  (If the budget is NOT yet empty...)
-                                                   |  (   ^                                )
-                                                   |  (   | If it IS empty...             )
-                                                   v  (   v                                )
-                                +-------------------------------------+
-                                | 4. Monitor Budget Status (Is it depleted?) |
-                                |   - Alerts can be triggered for rapid burn rates (e.g., "Warning: 50% of budget gone!") |
-                                +-------------------------------------+
-                                                   |
-                                                   | (If total failures consume the entire budget...)
-                                                   v
-                                +-------------------------------------+
-                                | 5. SLO Violation (Error Budget Exhausted) |
-                                |   (e.g., Total failures exceed 43 minutes for the month) |
-                                +-------------------------------------+
-                                                   |
-                                                   v
-                                +-------------------------------------+
-                                | 6. Consequence (Priorities Shift)   |
-                                |   (e.g., Release Freeze, mandatory focus on stability/bug fixes) |
-                                +-------------------------------------+
+                        +-------------------------------------------+
+                        | 1. Set SLO Target (The Reliability Goal)  |
+                        |   (e.g., 99.9% availability over 30 days) |
+                        +-------------------------------------------+
+                                            |
+                                            v
+                +------------------------------------------------------------+
+                | 2. Calculate Error Budget (The Allowance)                  |
+                |   (From 99.9% SLO: 0.1% failure = 43 minutes over 30 days) |
+                +------------------------------------------------------------+
+                                            |
+                                            |  (This budget can be consumed by...)
+                                            v
+                +------------------------------------------------------------+
+                | 3. Failures / Errors Occur (The "Budget Burn")             |
+                |   - Each incident "burns" a portion of the budget.         |
+                |   - Example: A single 10-minute outage "burns" 10 minutes. |
+                |     (Budget remaining: 43 - 10 = 33 minutes)               |
+                +------------------------------------------------------------+
+                                            |
+                                            |  (If the budget is NOT yet empty...)
+                                            |  (   ^                                )
+                                            |  (   | If it IS empty...             )
+                                            v  (   v                                )
+    +-----------------------------------------------------------------------------------------+
+    | 4. Monitor Budget Status (Is it depleted?)                                              |
+    |   - Alerts can be triggered for rapid burn rates (e.g., "Warning: 50% of budget gone!") |
+    +-----------------------------------------------------------------------------------------+
+                                            |
+                                            | (If total failures consume the entire budget...)
+                                            v
+                +----------------------------------------------------------+
+                | 5. SLO Violation (Error Budget Exhausted)                |
+                |   (e.g., Total failures exceed 43 minutes for the month) |
+                +----------------------------------------------------------+
+                                            |
+                                            v
+            +------------------------------------------------------------------+
+            | 6. Consequence (Priorities Shift)                                |
+            |   (e.g., Release Freeze, mandatory focus on stability/bug fixes) |
+            +------------------------------------------------------------------+
 ```
 
 
