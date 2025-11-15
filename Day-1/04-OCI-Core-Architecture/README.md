@@ -2,10 +2,6 @@
 
 ## Subtopic: OCI Core Architecture
 
-### TOC Reference: Day 1 → SRE Fundamentals and OCI Foundations → OCI Core Architecture
-
-### Audience Context: IT Engineers and Developers
-
 ---
 
 # 1. Concept Overview
@@ -86,7 +82,7 @@ SRE redesigns architecture using AD-local deployments.
 Backend VMs placed in same FD cause outages during host maintenance.
 SRE enforces placement across FDs.
 
-### Example 3 (OCI Specific) — Routing Misconfiguration
+### Example 3 — Routing Misconfiguration
 
 IT engineer creates private subnet but forgets NAT gateway.
 Outbound API calls fail.
@@ -126,18 +122,7 @@ Users → LB → App VM (Single AD) → Database
 
 ---
 
-# 6. Hands-On Exercise (Summary Only)
-
-A dedicated lab will follow separately, covering:
-
-* Creating a VCN with public/private subnets.
-* Deploying compute in multiple availability domains.
-* Configuring an OCI Load Balancer.
-* Observing metrics/logs for each component.
-
----
-
-# 7. Architecture / Workflow Diagrams
+# 6. Architecture / Workflow Diagrams
 
 ### Diagram 1 — OCI Core Components
 
@@ -196,7 +181,7 @@ Database → Metrics → Monitoring
 
 ---
 
-# 8. Best Practices
+# 7. Best Practices
 
 * Always deploy across multiple ADs/Fault Domains.
 * Use private subnets for application tier.
@@ -207,27 +192,16 @@ Database → Metrics → Monitoring
 
 ---
 
-# 9. Common Mistakes
+# 8. Common Mistakes
 
 * Placing all compute resources in a single AD.
 * Missing NAT gateway in private subnet.
 * Not enabling health checks for LB backends.
 * Using incorrectly sized compute shapes.
-* No observability setup (missing logs/metrics).
 
 ---
 
-# 10. Checklist
-
-* Understand compartments, VCNs, ADs, and FDs.
-* Know how load balancers route to compute.
-* Understand routing and gateway configurations.
-* Know where metrics/logs originate.
-* Understand HA and autoscaling basics.
-
----
-
-# 11. Additional Notes
+# 9. Additional Notes
 
 * OCI’s architecture offers deeper control compared to many clouds.
 * SRE depends heavily on these core compo

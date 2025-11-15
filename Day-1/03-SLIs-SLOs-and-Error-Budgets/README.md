@@ -2,10 +2,6 @@
 
 ## Subtopic: SLIs, SLOs, and Error Budgets
 
-### TOC Reference: Day 1 → SRE Fundamentals and OCI Foundations → SLIs, SLOs, Error Budgets
-
-### Audience Context: IT Engineers and Developers
-
 ---
 
 # 1. Concept Overview
@@ -149,17 +145,6 @@ Users → LB → Billing API → Database
 
 ---
 
-# 6. Hands-On Exercise (Summary Only)
-
-A dedicated hands-on lab will follow separately. It will cover:
-
-* Defining SLIs for a sample OCI web application.
-* Setting latency and availability SLOs.
-* Calculating error budgets.
-* Understanding error budget burn rate using Monitoring metrics.
-
----
-
 # 7. Architecture / Workflow Diagrams
 
 ### Diagram 1 — SLI/SLO Flow
@@ -170,19 +155,50 @@ Request → Application → Metrics → Monitoring → SRE Decision
 
 ### Diagram 2 — Error Budget Burn
 
++-------------------------------------+
+                                | 1. Set SLO Target (The Reliability Goal) |
+                                |   (e.g., 99.9% availability over 30 days) |
+                                +-------------------------------------+
+                                                   |
+                                                   v
+                                +-------------------------------------+
+                                | 2. Calculate Error Budget (The Allowance) |
+                                |   (From 99.9% SLO: 0.1% failure = 43 minutes over 30 days) |
+                                +-------------------------------------+
+                                                   |
+                                                   |  (This budget can be consumed by...)
+                                                   v
+                       +------------------------------------------------------------+
+                       | 3. Failures / Errors Occur (The "Budget Burn")             |
+                       |   - Each incident "burns" a portion of the budget.          |
+                       |   - Example: A single 10-minute outage "burns" 10 minutes. |
+                       |     (Budget remaining: 43 - 10 = 33 minutes)               |
+                       +------------------------------------------------------------+
+                                                   |
+                                                   |  (If the budget is NOT yet empty...)
+                                                   |  (   ^                                )
+                                                   |  (   | If it IS empty...             )
+                                                   v  (   v                                )
+                                +-------------------------------------+
+                                | 4. Monitor Budget Status (Is it depleted?) |
+                                |   - Alerts can be triggered for rapid burn rates (e.g., "Warning: 50% of budget gone!") |
+                                +-------------------------------------+
+                                                   |
+                                                   | (If total failures consume the entire budget...)
+                                                   v
+                                +-------------------------------------+
+                                | 5. SLO Violation (Error Budget Exhausted) |
+                                |   (e.g., Total failures exceed 43 minutes for the month) |
+                                +-------------------------------------+
+                                                   |
+                                                   v
+                                +-------------------------------------+
+                                | 6. Consequence (Priorities Shift)   |
+                                |   (e.g., Release Freeze, mandatory focus on stability/bug fixes) |
+                                +-------------------------------------+
 ```
-          SLO Target
-              |
-              v
-+-----------------------------+
-|   Allowed Failure Window    |
-+-----------------------------+
-     |                   |
-     |                   v
-     |              Budget Burn
-     v
-Violation → Release Freeze / Stability Focus
-```
+
+
 
 ### Diagram 3 — Example Metrics Used
 
@@ -197,13 +213,23 @@ Compute → CPU/Memory saturation
 
 # 8. Best Practices
 
-* Define SLIs based on user impact, not internal metrics alone.
-* Keep SLOs realistic, not overly strict.
-* Use error budgets as a governance mechanism.
-* Review SLO compliance at least monthly.
-* Align developers on reliability implications.
-* IT engineers should monitor saturation, resource pressure, and network behaviours.
+* **Define SLIs based on user impact, not internal metrics alone.**
+    * **Example:** Measure **page load time** (what the user feels) instead of just **server CPU usage** (an internal metric).
 
+* **Keep SLOs realistic, not overly strict.**
+    * **Example:** Start with a 99.9% ("three nines") availability target instead of an extremely difficult and expensive 99.999% ("five nines") target, unless it's truly critical.
+
+* **Use error budgets as a governance mechanism.**
+    * **Example:** If the error budget is used up for the month, automatically **pause new feature releases** to force the team to focus on stability and bug fixes.
+
+* **Review SLO compliance at least monthly.**
+    * **Example:** Hold a regular meeting to ask, "Did we meet our 99.9% target last month? Why or why not?" and plan any necessary corrections.
+
+* **Align developers on reliability implications.**
+    * **Example:** When a developer is building a new feature, make sure they understand how it could **impact the error budget** and overall system performance.
+
+* **IT engineers should monitor saturation, resource pressure, and network behaviours.**
+    * **Example:** An IT engineer should watch for signs that the **memory (RAM) is almost full** or the **network is getting congested**, *before* it causes an outage.
 ---
 
 # 9. Common Mistakes
@@ -216,17 +242,7 @@ Compute → CPU/Memory saturation
 
 ---
 
-# 10. Checklist
-
-* Understand what SLIs, SLOs, and error budgets represent.
-* Able to identify user-facing SLIs.
-* Know how to calculate error budgets.
-* Understand when to halt or slow releases based on budget.
-* Recognise OCI metrics relevant to SLI definitions.
-
----
-
-# 11. Additional Notes
+# 10. Additional Notes
 
 * SLOs are not SLAs. SLAs involve financial penalties; SLOs are engineering tools.
-* Error budgets help balance velocity and re
+* Error budgets help balance velocity and reliability effectively.

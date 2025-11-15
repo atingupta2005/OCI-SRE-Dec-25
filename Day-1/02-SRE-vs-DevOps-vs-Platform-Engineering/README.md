@@ -2,10 +2,6 @@
 
 ## Subtopic: SRE vs DevOps vs Platform Engineering
 
-### TOC Reference: Day 1 → SRE Fundamentals and OCI Foundations → SRE vs DevOps vs Platform Engineering
-
-### Audience Context: IT Engineers and Developers
-
 ---
 
 # 1. Concept Overview
@@ -54,7 +50,6 @@ SRE: Ensures reliability, observability, and operational excellence
 
 * Reliability as an engineering goal tracked through SLIs/SLOs.
 * Focused on automation, observability, incident response, and capacity planning.
-* Applies software engineering to operational challenges.
 * Ensures systems behave consistently under varied load conditions.
 
 ### DevOps
@@ -94,14 +89,7 @@ SRE: Ensures reliability, observability, and operational excellence
 * SRE investigates latency spikes and error rates.
 * Platform Engineering later provides a safer deployment pattern using canary modules.
 
-### Example 2 — OCI Load Balancer Backend Issues (OCI-Specific)
-
-* DevOps pipeline deploys a new backend version.
-* OCI Load Balancer health checks fail.
-* SRE identifies SLI breaches in backend response time.
-* Platform team updates instance pool module to enforce correct health check config by default.
-
-### Example 3 — Scalability Requirements
+### Example 2 — Scalability Requirements
 
 * IT engineers notice traffic spikes on weekends.
 * SRE analyses saturation metrics and error budgets.
@@ -144,20 +132,7 @@ Developers → DevOps Pipelines → Application Deployment → Application Insta
 
 ---
 
-# 6. Hands-On Exercise (Summary Only)
-
-A detailed hands-on lab will follow separately. The lab will include:
-
-* Exploring OCI components used by DevOps, SRE, and Platform teams.
-* Reviewing deployment pipelines.
-* Analysing reliability signals for deployments.
-* Understanding how load balancer health checks align with SRE expectations.
-
-Full lab will be delivered in a separate canvas document.
-
----
-
-# 7. Architecture / Workflow Diagrams
+# 6. Architecture / Workflow Diagrams
 
 ### Workflow: Where Each Discipline Operates
 
@@ -181,7 +156,7 @@ Write Code                  Deploy Code           Provide Tools/Modules
 
 ---
 
-# 8. Best Practices
+# 7. Best Practices
 
 * Clearly define ownership boundaries between SRE, DevOps, and Platform teams.
 * Developers should rely on platform-provided tooling whenever possible.
@@ -191,23 +166,13 @@ Write Code                  Deploy Code           Provide Tools/Modules
 
 ---
 
-# 9. Common Mistakes
+# 8. Common Mistakes
 
 * Treating SRE as a replacement for DevOps or IT Ops.
 * Assuming DevOps owns reliability.
 * Developers bypassing platform tooling and creating inconsistent deployments.
 * Lack of unified observability across teams.
 * Missing SLOs leading to unclear reliability responsibilities.
-
----
-
-# 10. Checklist
-
-* Understand differences between SRE, DevOps, and Platform Engineering.
-* Be able to map responsibilities.
-* Know where each discipline fits in the service lifecycle.
-* Recognise how they collaborate to ensure reliability.
-* Awareness of SLO-driven development and release checks.
 
 ---
 
