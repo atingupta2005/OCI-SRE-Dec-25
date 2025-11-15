@@ -154,7 +154,7 @@ Request → Application → Metrics → Monitoring → SRE Decision
 ```
 
 ### Diagram 2 — Error Budget Burn
-
+```
 +-------------------------------------+
                                 | 1. Set SLO Target (The Reliability Goal) |
                                 |   (e.g., 99.9% availability over 30 days) |
