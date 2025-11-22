@@ -1,250 +1,225 @@
-# Day 2 – Measuring Reliability and Monitoring on OCI
+# **Day 2 – Hands-On: Dashboards & Visualization (Using Class Enrollment App VM)**
 
-## Hands-On Lab: Building Dashboards and Visualization
+## **Instructor-Optimized, Student-Friendly Version with Solutions Key**
 
-### TOC Reference: Day 2 → Measuring Reliability and Monitoring on OCI → Hands-On for Dashboards and Visualization
-
-### Audience Context: IT Engineers and Developers
-
-All steps in this lab follow the latest OCI Console interface at the time of writing.
+In this lab, students will learn to build monitoring dashboards in OCI and create visual panels aligned with SRE practices. The focus is on **latency**, **uptime**, and **alarm awareness**, all tied to the Compute instance running the **Class Enrollment Web App**.
 
 ---
 
-# 1. Background and Purpose
+# **1. Objective of This Hands-On**
 
-Dashboards are a core SRE tool used for:
+By the end of this exercise, students will:
 
-* Visualizing SLIs
-* Tracking SLO compliance
-* Monitoring real-time resource behaviour
-* Observing ongoing incidents
-* Supporting on-call troubleshooting
+* Understand how to create and organize an OCI Dashboard
+* Build visual panels for latency and uptime metrics
+* Add alarm widgets to unify alert visibility
+* Interpret metrics in the context of reliability and SLOs
 
-This hands-on lab teaches participants how to build an OCI dashboard focused on latency, availability, and error indicators using real metrics from Compute instances and Load Balancers.
-
----
-
-# 2. Objectives
-
-* Create an OCI custom dashboard.
-* Add latency, CPU, and network metric charts.
-* Add error-rate visualizations.
-* Add alarm widgets for quick incident awareness.
-* Organize panels to reflect the application’s architecture.
+This is foundational for later topics: SLO validation, alert tuning, and incident review.
 
 ---
 
-# 3. Prerequisites
+# **2. Background Before Hands-On**
 
-### OCI Requirements
+Students should recall:
 
-* Compute instance with Cloud Agent enabled.
-* Load balancer (optional but recommended).
-* Monitoring and Dashboard permissions: `monitoring.*` and `dashboard.*`.
+## **2.1 Dashboards Overview**
 
-### Knowledge Requirements
+OCI Dashboards allow you to visualize:
 
-* Ability to query metrics in Metric Explorer.
-* Understanding of P95/P99 latency concepts.
+* Compute metrics (CPU, memory, network)
+* Custom metrics (latency, errors, business KPIs)
+* Alarms firing states
+* Logs & traces (via widgets)
 
----
+Dashboards help SREs:
 
-# 4. Architecture / Diagram
-
-```
-             +-----------------------------+
-             |      OCI Custom Dashboard   |
-             +-----------------------------+
-             |  Latency (P95/P99)          |
-             |  Error Rate                 |
-             |  Healthy Backends           |
-             |  CPU / Memory / Network     |
-             |  Alarm States               |
-             +-----------------------------+
-```
+* Validate SLO performance
+* Spot patterns and anomalies
+* Investigate incidents
 
 ---
 
-# 5. Step-by-Step Procedure
+## **2.2 SLO-Focused Panels**
 
-## Step 1: Create a New Dashboard
+SRE dashboards prioritize panels that show:
 
-1. Open OCI Console.
-2. Navigate to:
-   **Observability & Management → Dashboards**.
-3. Click **Create Dashboard**.
-4. Provide:
+* **User-visible performance** → latency, success rate
+* **Error patterns** → 5xx spikes, anomalies
+* **Service uptime** → availability indicators
+* **Burn rate** (later)
 
-   * Name: `day2-reliability-dashboard`
-   * Description: `Dashboard for SLI/SLO reliability metrics`
-5. Select **Create**.
+This hands-on focuses on the first two.
 
 ---
 
-## Step 2: Add a Latency Panel (Load Balancer)
+# **3. Hands-On Task 1 — Build a Dashboard for Latency & Uptime**
 
-### For environments with an OCI Load Balancer:
+## **Purpose:** Create a clear view of how the system is performing.
+
+You will build **two essential panels**:
+
+1. **Latency panel** (proxy metric using CPU + network if no custom app metrics exist)
+2. **Uptime panel** (instance state + health)
+
+---
+
+## **Steps:**
+
+1. Open **Navigation Menu (☰) → Observability & Management → Dashboards**.
+2. Click **Create Dashboard**.
+3. Enter:
+
+   * **Name:** `<student-id>-sre-dashboard`
+   * **Compartment:** your training compartment
+4. Click **Create**.
+
+You will now land in an empty dashboard.
+
+---
+
+## **A. Add Latency Panel (Proxy Metrics)**
+
+Since the Class Enrollment App does not emit custom latency metrics by default, you will use **CPU + Network activity** as latency proxies.
+
+### Steps:
 
 1. Click **Add Widget → Metric Chart**.
-2. Choose:
+2. In **Metric Namespace**, choose:
 
-   * Namespace: `oci_lbaas`
-   * Metric: `BackendResponseTime`
-3. Under **Statistic**, select: `p99`.
-4. Filter dimensions:
+   * `oci_computeagent`
+3. Under **Metric Name**, select:
 
-   * `backendSetName`: your backend set
-   * `resourceId`: your load balancer OCID
-5. Title the panel: `P99 Backend Latency`.
-6. Click **Add to Dashboard**.
+   * `CpuUtilization`
+4. Select your instance: `<student-id>-compute-training`.
+5. Configure chart options:
+
+   * **Statistic:** `P95` (or `Mean`) if available
+   * **Interval:** `1 minute`
+6. Title it:
+
+   * **"Latency Proxy – CPU Utilization"**
+7. Click **Create**.
+
+Repeat to add a **NetworkBytesIn** or **NetworkBytesOut** panel.
+These spikes often correlate with user actions.
 
 ---
 
-## Step 3: Add CPU Utilization Panel
+## **B. Add Uptime Panel (Instance Health)**
 
 1. Click **Add Widget → Metric Chart**.
-2. Select:
+2. Namespace:
 
-   * Namespace: `oci_computeagent`
-   * Metric: `CpuUtilization`
-3. Filter by instance OCID.
-4. Choose statistic: `mean`.
-5. Title: `Compute CPU Utilization`.
-6. Add widget.
+   * `oci_computeagent`
+3. Metric Name:
 
----
+   * `CpuUtilization` or `DiskBytesRead`
+4. Change **Chart Type** → `Status` if available.
 
-## Step 4: Add Memory Utilization Panel
+This chart shows if the instance is reachable and healthy.
 
-1. Add another **Metric Chart**.
-2. Namespace: `oci_computeagent`
-3. Metric: `MemoryUtilization`.
-4. Filter by instance OCID.
-5. Title: `Memory Utilization`.
+Alternative:
 
-### Notes
-
-Memory metrics require Cloud Agent.
+* Use a widget showing the instance **Lifecycle State** if available.
 
 ---
 
-## Step 5: Add Error Rate Panel (Load Balancer)
+# **4. Hands-On Task 2 — Add Alarm Widgets**
 
-1. Add **Metric Chart**.
-2. Namespace: `oci_lbaas`.
-3. Metric: `HttpResponseCounts`.
-4. Filter dimensions:
+## **Purpose:** Surface current alarms directly on the dashboard.
 
-   * HTTP response class = `5xx`
-5. Choose statistic: `sum`.
-6. Title: `Error Rate (5xx Responses)`.
+This helps real SREs quickly detect outages.
 
 ---
 
-## Step 6: Add Healthy Backend Count Panel
+## **Steps:**
 
-1. Add **Metric Chart**.
-2. Namespace: `oci_lbaas`.
-3. Metric: `BackendHealthyHostCount`.
-4. Title: `Healthy Backend Hosts`.
-5. Use statistic: `mean`.
+1. Click **Add Widget → Alarm**.
+2. Choose your previously created CPU alarm:
 
-### Why this matters
+   * `<student-id>-cpu-alarm`
+3. Set display mode:
 
-This panel quickly identifies LB-side failures.
+   * `Summary` or `Detailed`
+4. Click **Add**.
 
----
-
-## Step 7: Add Alarm Summary Widget
-
-1. Click **Add Widget → Alarm Status**.
-2. Select all relevant alarms:
-
-   * CPU alarms
-   * Latency alarms
-   * Availability alarms
-3. Title: `Active Alarms Overview`.
-
-### Purpose
-
-Provides quick visibility for on-call triage.
+Repeat if you create additional alarms (latency, uptime, etc.).
 
 ---
 
-## Step 8: Organize Dashboard Layout
+## **What You Should See on Your Dashboard:**
 
-Arrange widgets in the following logical order:
+* **Latency proxy panel** (CPU charts)
+* **Network activity panel**
+* **Uptime panel** (instance health or status)
+* **Alarm widget** showing OK/FIRING state
+
+The dashboard now acts as a basic SRE observability console.
+
+---
+
+# **5. Summary of the Hands-On**
+
+Today you built:
+
+* A custom SRE dashboard
+* Latency visualization using CPU and network as proxies
+* Uptime and instance health visualization
+* Alarm widgets for operational awareness
+
+These are the foundations of an end-to-end observability system.
+
+---
+
+# **6. Solutions Key (Instructor Reference)**
+
+Use this to verify student dashboards.
+
+---
+
+# **✔ Solution Key — Task 1: Latency & Uptime Dashboard**
+
+### Expected Widgets:
+
+1. **CPU Utilization (P95 or Mean)**
+2. **NetworkBytesIn / NetworkBytesOut**
+3. **Instance Health / Status Proxy Panel**
+
+### Expected Dashboard Name:
 
 ```
-Row 1: P99 Latency | Error Rate
-Row 2: Healthy Backends | Alarm Status
-Row 3: CPU Utilization | Memory Utilization | Network Traffic
+<student-id>-sre-dashboard
 ```
 
-Good dashboards follow the flow of the application:
+### Why These Panels Are Correct:
 
-* User-facing metrics on top
-* Infrastructure metrics below
-* Alerts on the side or near the top
+* CPU spikes often indicate processing delays
+* Network spikes correlate with traffic events
+* Uptime panel shows instance availability
 
----
-
-# 6. Expected Output / Verification
-
-Your dashboard should now include:
-
-* A P99 latency chart
-* Error rate visualization
-* Backend health chart
-* CPU and memory charts
-* Alarm summary
-
-Verification checklist:
-
-```
-[ ] Dashboard created successfully
-[ ] Latency panel shows live data
-[ ] CPU and memory metrics visible
-[ ] Error panels show trend lines
-[ ] Healthy backend count displayed
-[ ] Alarms visible in summary widget
-```
+SRE dashboards must highlight **user-facing performance**, even if via proxy metrics.
 
 ---
 
-# 7. Troubleshooting Guidelines
+# **✔ Solution Key — Task 2: Alarm Widgets**
 
-**No metrics visible:**
+### Expected Alarm Widget:
 
-* Check correct region and compartment.
-* Ensure Cloud Agent plugins are enabled on compute.
+* `<student-id>-cpu-alarm`
 
-**Latency or error metrics missing:**
+### Expected State:
 
-* Verify load balancer is receiving traffic.
+* **OK** (normal) OR
+* **FIRING** (if CPU exceeded threshold)
 
-**Widget not saving:**
+### Why This Matters:
 
-* Ensure dashboard name does not contain unsupported characters.
-* Refresh browser and retry.
+Alarms on dashboards give:
 
-**Alarm widget empty:**
+* Real-time visibility
+* Quick triage paths
+* Immediate understanding of system health
 
-* Ensure alarms exist and are not disabled.
+If students see real values updating, their dashboard is functioning correctly.
 
----
-
-# 8. Best Practices Learned
-
-* Group related metrics together.
-* Visualize percentiles for latency, not averages.
-* Include alarms to help on-call responders.
-* Use consistent time windows (e.g., last 1 hour).
-* Make dashboards service-centric, not resource-centric.
-
----
-
-# 9. Additional Notes
-
-* Dashboards will be reused in Day 4 for high-availability and failover validation exercises.
-* Teams commonly create dashboards per microservice or per environment (dev, test, prod).

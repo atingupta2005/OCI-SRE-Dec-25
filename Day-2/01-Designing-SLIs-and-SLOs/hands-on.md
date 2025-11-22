@@ -1,281 +1,187 @@
-# Day 2 – Designing and Implementing Reliability Measures
+# **Day 1 – SLIs and SLOs Hands‑On (Student Edition with Solutions Key)**
 
-## Hands-On Lab: Designing SLIs and SLOs
-
-### TOC Reference: Day 2 → Designing SLIs & SLOs → Hands-On for Designing SLIs and SLOs
-
-### Audience Context: IT Engineers and Developers
-
-All steps in this lab follow the latest OCI Console interface at the time of writing.
+This version is designed **for students**. It guides them through documenting SLIs and defining SLOs **with detailed explanations**. A **solution key** is provided at the end so learners can compare their answers.
 
 ---
 
-# 1. Background and Purpose
+# **📘 PART 1 — Student Activity**
 
-This hands-on lab enables participants to design **Service Level Indicators (SLIs)** and **Service Level Objectives (SLOs)** using real signals from an OCI-based application. The goal is to translate user-facing behaviours into measurable reliability criteria.
+You are working with the **Class Enrollment Web App**, which supports:
 
-By the end of this lab, engineers will:
+* Student login & course browsing
+* Enrollment into classes
+* Teachers viewing/editing grades
+* Admin managing users, classes, and enrollment data
 
-* Map user journeys to measurable points.
-* Identify candidate SLIs.
-* Extract latency and availability metrics from OCI Monitoring.
-* Define realistic SLOs.
-* Calculate error budgets.
+Your task is to:
 
-This is a modelling exercise using your existing application running behind an OCI load balancer.
+1. Document **SLIs** (Service Level Indicators)
+2. Choose **SLOs** (Service Level Objectives)
 
----
-
-# 2. Objectives
-
-* Analyse user flows and critical request paths.
-* Identify meaningful SLIs based on Monitoring metrics.
-* Set appropriate SLO targets.
-* Calculate monthly error budgets.
-* Validate measurability by checking actual OCI signals.
+Keep answers short but clear.
 
 ---
 
-# 3. Prerequisites
+# **1. Document Your SLIs**
 
-### OCI Requirements
-
-* Application deployed behind an OCI Load Balancer.
-* Compute instances with Cloud Agent enabled.
-* Logging & Monitoring enabled.
-* IAM permissions for:
-
-  * Load Balancers
-  * Monitoring
-  * Logging
-  * Compute
-
-### Knowledge Requirements
-
-* Familiarity with request/response patterns.
-* Understanding of percentiles (P95/P99).
+Use the templates below.
 
 ---
 
-# 4. Architecture / Diagram
+## **SLI 1 – Availability**
 
-```
-User → OCI Load Balancer → Application VMs → Database / External APIs
-                               |                 |
-                               |                 +→ System Metrics
-                               +→ LB Metrics
-                                   +→ Logs
-```
-
-SLIs will be derived from this path.
+**Your definition:**
+(Write what availability means for this app.)
 
 ---
 
-# 5. Step-by-Step Procedure
+## **SLI 2 – Latency**
 
-## Step 1: Identify Critical User Journeys
-
-1. List your application's top operations (e.g., login, checkout, search).
-2. Prioritise operations with high business impact.
-3. Select **one primary path** for this lab. Example:
-
-```
-User → LB → /api/checkout → Database
-```
-
-### Reasoning
-
-SLIs should measure the most important user-facing behaviours.
+**Your definition:**
+(Define how fast the system should respond.)
 
 ---
 
-## Step 2: Identify Candidate SLIs Using OCI Monitoring
+## **SLI 3 – Error Rate (Optional)**
 
-1. Open OCI Console.
-2. Navigate to:
-   **Observability & Management → Monitoring → Metric Explorer**.
-3. In **Metric Namespace**, select:
-
-   * `oci_lbaas`
-4. Query the following key metrics:
-
-   * `BackendResponseTime` → Latency SLI
-   * `HttpResponseCounts` → Success Rate SLI
-   * `BackendHealthyHostCount` → Availability SLI
-
-### Extracting Latency Data
-
-1. Select metric: **BackendResponseTime**.
-2. Filter resources by your load balancer OCID.
-3. Change the statistic to **p95** or **p99**.
-
-### Extracting Success Rate Data
-
-1. Select metric: **HttpResponseCounts**.
-2. Filter by HTTP class codes:
-
-   * `2xx`
-   * `4xx`
-   * `5xx`
-
-### Extracting Availability Data
-
-* Review `BackendHealthyHostCount` to measure host readiness.
+**Your definition:**
+(Define what percentage of requests can fail.)
 
 ---
 
-## Step 3: Finalise SLIs
+## **SLI 4 – Business Success Rate (Optional)**
 
-Based on extracted metrics, define SLIs.
-
-Example SLIs:
-
-```
-SLI 1: P99 latency of /api/checkout
-SLI 2: Percentage of requests returning 2xx
-SLI 3: Healthy backend availability
-```
-
-Write them in your notes/document.
+**Your definition:**
+(Define how often enrollment actions succeed.)
 
 ---
 
-## Step 4: Define SLO Targets
-
-Use the last 7–30 days of monitoring data.
-
-1. Review historical latency (p99) trends.
-2. Identify typical patterns during peak load.
-3. Set an achievable target.
-
-### Example SLOs
-
-```
-SLO 1: P99 latency < 600 ms for /api/checkout
-SLO 2: 99.7% of all requests return 2xx
-SLO 3: At least 1 healthy backend 99.9% of the time
-```
-
-### Notes
-
-* Avoid extreme values without historical proof.
-* SLO is not a wish; it's a commitment.
+# **2. Define Your SLOs (Targets + Short Notes)**
 
 ---
 
-## Step 5: Calculate Error Budgets
+## **SLO for SLI 1 (Availability)**
 
-Formula:
+**Target:**
 
-```
-Error Budget = 100% - SLO
-```
-
-### Example Calculation
-
-```
-If SLO = 99.7% → Error Budget = 0.3%
-```
-
-If service receives 5 million monthly requests:
-
-```
-Allowed failures = 5,000,000 * 0.3% = 15,000 failed requests
-```
-
-Record this value for later error budget burn analysis.
+**Short rationale:**
 
 ---
 
-## Step 6: Validate SLIs in the Real Metrics
+## **SLO for SLI 2 (Latency)**
 
-1. Return to **Metric Explorer**.
-2. Validate that the metric streams exist for:
+**Target:**
 
-   * Latency (p95/p99)
-   * Success rate components (response counts)
-   * Availability (healthy host count)
-3. Ensure metrics update when traffic is generated.
-
-### Important Check
-
-SLIs must be **observable** before they can be used.
+**Short rationale:**
 
 ---
 
-## Step 7: Document SLIs, SLOs, and Error Budgets
+## **SLO for SLI 3 (Error Rate – Optional)**
 
-Create a table similar to below:
+**Target:**
 
-```
-+----------------------+-----------------------+----------------------------+
-|      SLI Name        | SLO Target            | Monthly Error Budget       |
-+----------------------+-----------------------+----------------------------+
-| P99 Checkout Latency | < 600ms               | 121,000ms allowed latency  |
-| Success Rate         | 99.7%                 | 15,000 failed requests     |
-| Healthy Backend      | 99.9%                 | 43 minutes downtime        |
-+----------------------+-----------------------+----------------------------+
-```
+**Short rationale:**
 
 ---
 
-# 6. Expected Output / Verification
+## **SLO for SLI 4 (Business Success Rate – Optional)**
 
-By completing this lab, participants should be able to:
+**Target:**
 
-* Identify critical user-facing metrics.
-* Derive SLIs based on Monitoring signals.
-* Set realistic SLOs.
-* Calculate numerical error budgets.
-* Validate that chosen SLIs are measurable.
-
-Verification checklist:
-
-```
-[ ] Able to query p95/p99 latency
-[ ] Able to calculate success rate from response counts
-[ ] Able to compute error budget
-[ ] Able to confirm availability metrics
-```
+**Short rationale:**
 
 ---
 
-# 7. Troubleshooting Guidelines
+# **📘 PART 2 — Solutions Key (Instructor Reference at End)**
 
-**Missing metrics:**
-
-* Ensure the load balancer receives traffic.
-* Verify correct compartment is selected.
-* Check that Cloud Agent is enabled on compute instances.
-
-**Too much noise in data:**
-
-* Use filtering or longer time ranges.
-* Switch to p99 for high traffic systems.
-
-**SLI not measurable:**
-
-* Ensure correct metric namespace is used.
-* Confirm resource OCIDs match your LB.
-
-**Latency spikes unexplained:**
-
-* Check compute CPU saturation.
-* Check database latency.
-* Review logs for backend timeouts.
+Students should NOT look at this section until their answers are completed.
 
 ---
 
-# 8. Best Practices Learned
+# **✔ Solution Key — Suggested SLIs and SLOs**
 
-* Select user-centric SLIs, not internal-only metrics.
-* SLOs must reflect real system performance.
-* Error budgets guide release velocity.
-* SLI measurability is essential before adopting.
+Below are well‑reasoned sample answers. Students may write slightly different definitions — that is fine if their reasoning is logical.
 
 ---
 
-# 9. Additional Notes
+# **1. Example SLIs**
 
-* These SLIs and SLOs will be used in upcoming labs for alerting and release gating.
-* Over time, refine SLOs based on production maturity.
+## **SLI 1 – Availability (Recommended)**
+
+**Definition:**
+“Percentage of successful responses (2xx/3xx) from the critical endpoints `/login`, `/courses`, and `/enroll`.”
+
+**Why:**
+If students or teachers cannot reach these endpoints, the system is effectively down.
+
+---
+
+## **SLI 2 – Latency (Recommended)**
+
+**Definition:**
+“Percentage of requests to `/courses` and `/enroll` served under **400 ms at P95**.”
+
+**Why:**
+These actions involve user decisions. High latency frustrates students and slows teachers.
+
+---
+
+## **SLI 3 – Error Rate (Recommended)**
+
+**Definition:**
+“Percentage of API requests returning 5xx responses across all backend endpoints.”
+
+**Why:**
+5xx failures mean system faults — not user mistakes.
+
+---
+
+## **SLI 4 – Business Success Rate (Optional)**
+
+**Definition:**
+“Percentage of successful enrollment attempts that complete without system errors.”
+
+**Why:**
+Enrollment is the core business action; failures directly impact learning outcomes.
+
+---
+
+# **2. Example SLOs (Targets + Rationale)**
+
+## **SLO for SLI 1 – Availability**
+
+**Target:** **99.5%** availability
+
+**Rationale:**
+This is an educational system, not a financial trading platform. 99.5% is reliable enough while allowing planned maintenance.
+
+---
+
+## **SLO for SLI 2 – Latency**
+
+**Target:** **95% of requests under 400 ms**
+
+**Rationale:**
+Fast page loads help students browse and enroll efficiently. 400 ms is a reasonable P95 target for an academic system.
+
+---
+
+## **SLO for SLI 3 – Error Rate**
+
+**Target:** **< 1% 5xx errors**
+
+**Rationale:**
+Most errors should be user‑generated (4xx). Server failures must be rare.
+
+---
+
+## **SLO for SLI 4 – Business Success Rate**
+
+**Target:** **98% successful enrollments**
+
+**Rationale:**
+Enrollment errors undermine trust, but occasional failures during peak periods may occur.
+
+---
+
+# **End of Student Document with Solutions Key**

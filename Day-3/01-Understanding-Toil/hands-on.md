@@ -1,249 +1,167 @@
-# Day 3 – Toil Reduction, Observability, and Automation
+# **Day 3 – Hands-On: Understanding Toil (Using Class Enrollment App Ops)**
 
-## Hands-On Lab: Understanding and Identifying Toil
+## **Instructor-Optimized, Student-Friendly Version with Solutions Key**
 
-### TOC Reference: Day 3 → Toil Reduction, Observability, and Automation → Hands-On for Understanding Toil
-
-### Audience Context: IT Engineers and Developers
-
-All steps in this lab follow the latest OCI Console interface at the time of writing.
+This hands-on activity helps students understand **toil**, identify it in day‑to‑day operations, and practice prioritizing automation work. The exercise uses the **Class Enrollment Web App** as the operational environment.
 
 ---
 
-# 1. Background and Purpose
+# **1. Background Concepts (Short & Clear)**
 
-This hands-on lab guides participants through the process of:
+## **1.1 What Is Toil?**
 
-* Identifying toil within an OCI environment,
-* Classifying tasks into SRE work categories,
-* Evaluating toil impact and frequency,
-* Prioritizing automation opportunities.
+**Toil** is manual, repetitive, automatable work that:
 
-This practical exercise strengthens your ability to separate high-value engineering work from repetitive operational work.
+* Is triggered by events rather than engineering intention
+* Doesn’t create long-term value
+* Scales linearly with service growth
+* Happens frequently and consumes engineering time
 
----
+### **Examples of toil:**
 
-# 2. Objectives
-
-* Examine operational tasks commonly performed by IT engineers and developers.
-* Identify tasks that meet the definition of toil.
-* Categorize tasks as Toil, Engineering Work, or Planned Work.
-* Rank tasks based on frequency and operational impact.
-* Prepare a structured output that forms a backlog for automation.
+* Restarting services when CPU spikes
+* Manually checking logs for common errors
+* Updating enrollment capacity in database by hand
+* Responding to the same alert repeatedly
 
 ---
 
-# 3. Prerequisites
+## **1.2 Why Reduce Toil?**
 
-### OCI Requirements
+Reducing toil helps teams:
 
-* At least one active OCI environment containing:
-
-  * Compute instances
-  * Load balancer (optional)
-  * Logging and Monitoring enabled
-
-### Knowledge Requirements
-
-* Understanding of toil definition (from Subtopic 1).
-* Familiarity with day-to-day operational workflows.
+* Improve system reliability through consistent automation
+* Free up time for impactful engineering work
+* Reduce burnout and on-call fatigue
+* Ensure repeatable and error-free operations
 
 ---
 
-# 4. Architecture / Diagram
+## **1.3 Automation Prioritization Basics**
+
+Automation should be prioritized when a task is:
+
+* **Frequent** (happens daily/weekly)
+* **Time-consuming**
+* **Error-prone**
+* **High-impact** if missed
+
+Tasks that are rare or require deep human judgment are *not* good automation candidates.
+
+---
+
+# **2. Hands-On Activity 1 — List Manual Operational Tasks in the Sample App**
+
+## **Purpose:** Identify real toil based on the Class Enrollment application.
+
+Imagine you are running the **Class Enrollment Web App** in production. List all tasks that require manual operator effort.
+
+### **Student Instructions:**
+
+Use the table below to list **at least 6–10 manual tasks** you think an operator would perform.
+
+Examples include: restarts, log checks, user provisioning, database cleanup, etc.
+
+| Manual Task (Student Entry) | Description | Why It’s Toil? |
+| --------------------------- | ----------- | -------------- |
+|                             |             |                |
+|                             |             |                |
+|                             |             |                |
+|                             |             |                |
+|                             |             |                |
+
+Be detailed—this will help in the automation ranking.
+
+---
+
+# **3. Hands-On Activity 2 — Rank Tasks by Time & Frequency**
+
+## **Purpose:** Learn how SREs prioritize automation work.
+
+You will evaluate each task based on:
+
+* **Time Required (T):** How long does the task take?
+* **Frequency (F):** How often does it occur?
+
+Use these scales:
+
+* **Time:** 1 = <1 min, 2 = 1–5 mins, 3 = 5–15 mins, 4 = 15–30 mins, 5 = >30 mins
+* **Frequency:** 1 = yearly, 2 = monthly, 3 = weekly, 4 = daily, 5 = many times per day
+
+Then calculate a **Toil Score:**
 
 ```
-Operational Tasks → Classification → Prioritization → Automation Backlog
+TOIL SCORE = Time × Frequency
 ```
+
+Higher score = higher priority for automation.
+
+### **Student Table:**
+
+| Task | Time (T) | Frequency (F) | Toil Score (T×F) | Automation Priority (Low/Med/High) |
+| ---- | -------- | ------------- | ---------------- | ---------------------------------- |
+|      |          |               |                  |                                    |
+|      |          |               |                  |                                    |
+|      |          |               |                  |                                    |
+|      |          |               |                  |                                    |
+|      |          |               |                  |                                    |
 
 ---
 
-# 5. Step-by-Step Procedure
+# **4. Summary of the Hands-On**
 
-## Step 1: Collect Operational Tasks
+In this hands-on, students practiced how SREs:
 
-Create an explicit list of operational tasks performed in your environment.
-Include tasks such as:
+* Identify operational toil
+* Describe and reason about repetitive manual tasks
+* Quantify toil based on time and frequency
+* Prioritize automation work based on impact
 
-* Restarting instances
-* Reviewing logs for errors
-* Scaling compute shapes manually
-* Applying OS patches
-* Managing block volume space
-* Responding to repetitive alerts
-* Creating new users or updating IAM policies
-
-Document all tasks without filtering.
+These are foundational skills for building reliable systems with minimal overhead.
 
 ---
 
-## Step 2: Classify Each Task
+# **5. Solutions Key (Instructor Reference)**
 
-Use the following classification framework:
-
-### **1. Toil** (repetitive, manual, automatable, adds no lasting value)
-
-Examples:
-
-* Manual log scanning
-* Manual instance restarts
-* Manual scaling
-
-### **2. Engineering Work** (creates long-term value)
-
-Examples:
-
-* Writing an autoscaling script
-* Designing VCN architecture
-
-### **3. Planned Work** (routine but valuable)
-
-Examples:
-
-* Quarterly security review
-* Capacity planning exercise
-
-Create a table similar to:
-
-```
-+----------------------------+----------------------+----------------------+
-| Task                       | Category             | Notes                |
-+----------------------------+----------------------+----------------------+
-| Restart instance daily     | Toil                 | Occurs daily         |
-| Design autoscaling policy  | Engineering Work     | One-time effort      |
-| IAM quarterly review       | Planned Work         | Adds compliance value|
-+----------------------------+----------------------+----------------------+
-```
+Below is a sample solution set. Student answers will vary depending on assumptions.
 
 ---
 
-## Step 3: Validate Toil Characteristics
+# **✔ Solution Key — Activity 1: Common Manual Tasks**
 
-For each task marked as **Toil**, confirm that it meets all SRE-defined attributes:
+Expected examples:
 
-* **Manual** → Requires human interaction
-* **Repetitive** → Occurs frequently
-* **Scales with load** → Grows as system grows
-* **Automatable** → Can be scripted or automated
-* **No lasting value** → System state unchanged post-task
-
-Only tasks meeting *all* criteria qualify as toil.
-
----
-
-## Step 4: Rank Toil Tasks by Priority
-
-Use the following parameters:
-
-* **Frequency** (daily, weekly, monthly)
-* **Impact** (low, medium, high)
-* **Effort to Automate** (low, medium, high)
-
-Ranking formula (simple version):
-
-```
-Priority = Frequency + Impact – Effort to Automate
-```
-
-Create a ranking table:
-
-```
-+--------------------------+----------+----------+---------------------+-----------+
-| Task                     | Frequency| Impact   | Effort to Automate | Priority  |
-+--------------------------+----------+----------+---------------------+-----------+
-| Manual log reviews       | High     | Medium   | Low                 | High      |
-| Manual instance restart  | Medium   | High     | Medium              | Medium    |
-+--------------------------+----------+----------+---------------------+-----------+
-```
+| Manual Task                        | Description                    | Why It’s Toil?                          |
+| ---------------------------------- | ------------------------------ | --------------------------------------- |
+| Restarting Flask backend           | Restarting app when CPU spikes | Repetitive, reactive, automatable       |
+| Cleaning stale student sessions    | Deleting stuck DB sessions     | Happens often during errors; scriptable |
+| Checking logs for 500 errors       | Searching logs manually        | Repetitive, predictable patterns        |
+| Updating course capacity manually  | Editing DB values              | Frequent during enrollment week         |
+| Resetting passwords for users      | Admin intervention             | High-frequency support request          |
+| Fixing CORS configuration manually | Editing config file            | Should be automated via IaC             |
 
 ---
 
-## Step 5: Identify Automation Opportunities
+# **✔ Solution Key — Activity 2: Ranking Tasks by Toil Score**
 
-For each high-priority toil task, identify possible automation paths:
+Sample scoring:
 
-### Example Automations
+| Task                     | T | F | Toil Score | Priority |
+| ------------------------ | - | - | ---------- | -------- |
+| Manual log checks        | 3 | 5 | 15         | High     |
+| Restarting app           | 2 | 4 | 8          | High     |
+| Password resets          | 3 | 4 | 12         | High     |
+| Updating course capacity | 4 | 3 | 12         | High     |
+| Cleaning stale sessions  | 3 | 3 | 9          | Medium   |
+| Fixing CORS config       | 5 | 1 | 5          | Low      |
 
-* **Manual log review →** Logging queries + Alerts
-* **Manual restarts →** Load balancer health check + Instance pool
-* **Manual scaling →** Autoscaling policy
-* **Disk monitoring →** Alarm + Block Volume Autogrow Script
+### **Why these priorities are correct:**
 
-Document automation approach for each task.
-
----
-
-## Step 6: Prepare the Toil Reduction Backlog
-
-Create a structured backlog:
-
-```
-+------------------------+---------------------+------------------------------+
-| Toil Task              | Automation Method   | Next Steps                   |
-+------------------------+---------------------+------------------------------+
-| Manual log review      | Logging queries     | Implement structured queries |
-|                        | & alarm rules       | Create 5xx alert             |
-+------------------------+---------------------+------------------------------+
-```
-
-This backlog will be used in Day 5 for automation planning.
+* Log checks + restarts happen frequently → top candidates for automation.
+* Password resets are high-frequency → automate via self‑service UI.
+* Updating course capacity is done during peak seasons → strong automation candidate.
+* CORS fixes are rare → low automation value.
 
 ---
 
-# 6. Expected Output / Verification
-
-Participants should end with:
-
-* A complete inventory of operational tasks.
-* A categorized task list.
-* A validated list of toil tasks.
-* A prioritized list for automation.
-* A documented backlog.
-
-Verification checklist:
-
-```
-[ ] All operational tasks identified
-[ ] Categories assigned correctly
-[ ] Toil validated using SRE criteria
-[ ] Tasks prioritized based on impact/frequency
-[ ] Automation backlog created
-```
-
----
-
-# 7. Troubleshooting Guidelines
-
-**Unclear task categorization:**
-
-* Ask: "Does this add long-term value?"
-* If no → likely toil.
-
-**Too many tasks marked as toil:**
-
-* Re-check criteria; not all repetitive tasks are toil.
-
-**Difficulty assigning impact:**
-
-* Look at historical incidents or workload patterns.
-
-**Multiple stakeholders performing same toil:**
-
-* Combine inputs and re-rank.
-
----
-
-# 8. Best Practices Learned
-
-* Always maintain a running list of toil.
-* Attack high-frequency toil first.
-* Prioritize automations that provide the largest reliability gain.
-* Revisit your toil backlog monthly.
-* Focus on measurable outcomes after automation.
-
----
-
-# 9. Additional Notes
-
-* This lab forms a foundation for Day 3 Subtopic 4 (Automation with Resource Manager).
-* Toil reduction is an ongoing SRE and engineering responsibility.
+# **End of Hands-On Document**

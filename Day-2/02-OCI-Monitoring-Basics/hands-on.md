@@ -1,268 +1,229 @@
-# Day 2 – Measuring Reliability and Monitoring on OCI
+# **Day 2 – Hands-On: OCI Monitoring Basics (Using Class Enrollment App)**
 
-## Hands-On Lab: OCI Monitoring Basics
+## **Instructor-Optimized, Student-Friendly Document**
 
-### TOC Reference: Day 2 → Measuring Reliability and Monitoring on OCI → Hands-On for OCI Monitoring Basics
-
-### Audience Context: IT Engineers and Developers
-
-All steps in this lab follow the latest OCI Console interface at the time of writing.
+This hands-on activity focuses only on the practical elements of **OCI Monitoring**, using the **Compute instance running your Class‑Enrollment application**. Students will learn where metrics come from, how to view them, and how to understand namespaces and metric names.
 
 ---
 
-# 1. Background and Purpose
+# **1. Objective of This Hands-On**
 
-This hands-on lab teaches how to explore and validate OCI Monitoring metrics for Compute instances and other core services.
-The goal is to help participants:
+By the end of this exercise, learners will:
 
-* Enable compute metrics (if needed)
-* Navigate the Monitoring interface
-* Inspect metric namespaces and metric names
-* Understand how to use these metrics for SLIs and SLOs
+* Understand how OCI’s Monitoring service collects and organizes metrics
+* Identify metric namespaces and types
+* Differentiate between default and custom metrics
+* Enable and view Compute metrics
+* Inspect metric names relevant to the Class Enrollment app environment
 
-Monitoring is the foundation for reliability measurement, so engineers must know exactly where signals come from and how to query them.
-
----
-
-# 2. Objectives
-
-* Enable and verify Compute instance metrics.
-* Explore Monitoring → Metric Explorer.
-* Identify available namespaces and metric names.
-* Inspect dimensions and statistics.
-* Validate metric availability for future SLO/alerting use.
+This activity connects directly to future topics—SLOs, alerting, dashboards, and incident response.
 
 ---
 
-# 3. Prerequisites
+# **2. Quick Overview Before the Hands-On**
 
-### OCI Requirements
+Students must understand three simple concepts:
 
-* Compute instance (VM or Bare Metal) in RUNNING state.
-* Cloud Agent enabled for enhanced metrics.
-* IAM permissions for:
+## **2.1 Monitoring Service Overview**
 
-  * Monitoring
-  * Compute
-  * Logging (optional for deeper checks)
+OCI Monitoring collects time‑series metrics such as:
 
-### Knowledge Requirements
+* CPU utilization
+* Memory usage (via custom metrics)
+* Disk usage
+* Network traffic
+* API request counts (if custom metrics are sent)
 
-* Basic understanding of metrics.
-* Awareness of compute and network behaviour.
-
----
-
-# 4. Architecture / Diagram
-
-```
-   Compute Instance
-        |
-        |  (Resource metrics emitted automatically)
-        v
-   OCI Monitoring Service
-        |
-        v
-   Metric Explorer → Dashboards / Alarms
-```
+Metrics are organized and visualized using the **Metric Explorer**.
 
 ---
 
-# 5. Step-by-Step Procedure
+## **2.2 Metric Namespaces**
 
-## Step 1: Verify Compute Metrics Availability
+A *namespace* is a logical group of metrics.
+Examples:
 
-1. Open OCI Console.
-2. Navigate to **Compute → Instances**.
-3. Select your instance.
-4. Open the **Metrics** tab.
+* `oci_computeagent` → compute-level metrics
+* `oci_vcn` → network-level metrics
+* `oci_loadbalancer` → load balancer metrics
 
-### Verify:
-
-* CPUUtilization is visible.
-* MemoryUtilization appears (requires Cloud Agent).
-* NetworkBytesIn / Out graphs appear.
-
-If metrics are missing:
-
-* Scroll to **Instance Details → Management Agent**.
-* Ensure agent status = **Active**.
+Think of namespaces as “folders” that contain related metric names.
 
 ---
 
-## Step 2: Check and Enable Cloud Agent (If Required)
+## **2.3 Default vs Custom Metrics**
 
-1. In the instance page, select **Oracle Cloud Agent** in the left panel under "Resources".
-2. Enable the following plugins:
+* **Default metrics:** automatically collected by OCI
 
-   * Compute Instance Monitoring
-   * Management Agent
-   * Logging
-3. Click **Enable** if plugins are inactive.
-4. Wait 2–3 minutes for metrics to populate.
+  * CPU Utilization
+  * Memory Utilization (for supported shapes)
+  * Network Throughput
+* **Custom metrics:** sent by your application or scripts
+
+  * API call counts
+  * Enrollment success rate
+  * App latency metrics
+
+For this lab, we only use **default metrics** from the Compute instance running the Class Enrollment app.
 
 ---
 
-## Step 3: Explore Metric Explorer
+# **3. Hands-On Task 1 — Enable Metrics for Compute Instance**
 
-1. Open the navigation menu.
-2. Navigate to:
-   **Observability & Management → Monitoring → Metric Explorer**.
-3. In the **Metric Namespace** dropdown, examine the available namespaces.
+### **Purpose:** Ensure your Class Enrollment app’s VM is sending default compute metrics.
 
-Common namespaces include:
+Metrics for Compute are enabled automatically **if the OCI Monitoring Agent is installed**. Most images like Oracle Linux include it by default.
+
+---
+
+## **Steps:**
+
+1. Open the **Navigation Menu (☰)**.
+2. Go to **Compute → Instances**.
+3. Click your instance: `*<student-id>-compute-training*`.
+4. Scroll down to the **Resources** section.
+5. Click **Metrics**.
+6. Confirm that graphs for CPU, Network, or Disk are visible.
+
+---
+
+## **What You Should See:**
+
+* CPU Utilization graph
+* Memory Utilization graph (if supported)
+* Network packets/bytes graphs
+* Disk throughput graphs
+
+If metrics show data points, monitoring is correctly enabled.
+
+---
+
+## **Why This Matters (SRE Context):**
+
+Compute metrics are the first signals SREs check during incidents. They help answer:
+
+* Is the service overloaded?
+* Is CPU throttling happening?
+* Is network traffic spiking?
+* Is the underlying VM healthy?
+
+---
+
+# **4. Hands-On Task 2 — Inspect Available Metric Names**
+
+### **Purpose:** Learn how to explore metric namespaces and names in OCI.
+
+This exercise helps students understand how OCI organizes metrics.
+
+---
+
+## **Steps:**
+
+1. Open **Navigation Menu → Observability & Management → Monitoring**.
+2. Click **Metric Explorer**.
+3. In the **Namespace** dropdown, choose:
+
+   * `oci_computeagent`
+4. In the **Metric Name** dropdown, review available metrics.
+
+You should see metrics like:
+
+* `CpuUtilization`
+* `MemoryUtilization`
+* `NetworkBytesIn`
+* `NetworkBytesOut`
+* `DiskBytesRead`
+* `DiskBytesWritten`
+
+---
+
+## **Student Activity:** List the metric names you find.
+
+Use this table:
+
+| Metric Name | Description (Your Notes) |
+| ----------- | ------------------------ |
+|             |                          |
+|             |                          |
+|             |                          |
+
+---
+
+# **65. Summary of the Hands-On**
+
+Today you:
+
+* Enabled and validated Compute instance metrics
+* Explored OCI Monitoring
+* Inspected metric namespaces and names
+* Prepared for future labs on dashboards, SLO validation, and alerting
+
+These basics are essential for real-time SRE work.
+
+---
+
+# **6. Solutions Key (Instructor Reference)**
+
+This section provides sample answers so students can self-check after completing the activity.
+
+---
+
+# **Solution Key — Task 1: Enable Metrics on Compute Instance**
+
+### ✔ What students should observe:
+
+* **CPU Utilization graph visible** → Confirms compute metrics are flowing.
+* **Network metrics visible** → Confirms VCN + instance networking is active.
+* **Disk I/O visible** → Confirms boot volume metrics are available.
+* **Memory Utilization** (only on supported shapes) → It's okay if missing.
+
+### ✔ Why this is correct:
+
+If any of these graphs are populating with timestamps and data points, it proves:
+
+* The Monitoring agent is installed
+* Metrics collection is healthy
+* The instance is actively reporting to OCI Monitoring
+
+If graphs show *“No Data”*, students should:
+
+1. Ensure the instance is in **Running** state.
+2. Wait 2–5 minutes (metrics are emitted at intervals).
+3. Confirm they selected the correct **compartment**.
+
+---
+
+# **Solution Key — Task 2: Inspect Available Metric Names**
+
+### ✔ Expected Namespace:
 
 ```
 oci_computeagent
-oci_computeapi
-oci_vcn
-oci_lbaas
-oci_blockstore
 ```
 
----
+### ✔ Expected Metric Names Students Should See:
 
-## Step 4: Inspect Metric Names
+(Names may vary slightly based on shape/OS.)
 
-1. Select namespace **oci_computeagent**.
+| Metric Name          | What It Means                               |
+| -------------------- | ------------------------------------------- |
+| CpuUtilization       | Percentage of CPU used on the VM            |
+| MemoryUtilization    | Percentage of RAM being used (if supported) |
+| NetworkBytesIn       | Bytes received by the VM over the network   |
+| NetworkBytesOut      | Bytes sent by the VM                        |
+| DiskBytesRead        | Boot volume read throughput                 |
+| DiskBytesWritten     | Boot volume write throughput                |
+| VnicBytesRx          | Incoming bytes on the VNIC                  |
+| VnicBytesTx          | Outgoing bytes on the VNIC                  |
+| CpuUtilizationPerCpu | CPU usage measured per core                 |
 
-2. Review available metric names:
+### ✔ Why these metrics matter for the Class Enrollment App:
 
-   * CpuUtilization
-   * MemoryUtilization
-   * NetworkBytesIn
-   * NetworkBytesOut
-   * DiskBytesRead
-   * DiskBytesWritten
+* **CPU** → sudden spikes may indicate overloaded API requests.
+* **Memory** → memory pressure may cause app slowdowns.
+* **Network** → traffic spikes align with student enrollment bursts.
+* **Disk I/O** → high values may signal database or logging bottlenecks.
 
-3. Select namespace **oci_computeapi**.
-
-4. Review metric names for system-level behaviours:
-
-   * CpuUtilization
-   * DiskUsedPercent
-
-### Note
-
-Not all metrics come from cloud agent. Some are native.
-
----
-
-## Step 5: Apply Dimensions and Filters
-
-1. Select **CpuUtilization**.
-2. Under Dimensions, locate:
-
-   * resourceId → Instance OCID
-   * availabilityDomain
-3. Select your instance OCID.
-4. Click **Update Chart** to refresh.
-
-### Verify
-
-* Graph updates to show only your instance metrics.
+Students should recognize that these default metrics form the baseline for diagnosing reliability issues.
 
 ---
-
-## Step 6: Inspect Statistics
-
-Using **CpuUtilization**:
-
-1. Change Statistic from **mean** to:
-
-   * max
-   * min
-   * p90
-   * p95
-2. Observe differences.
-
-### Why
-
-Percentiles show tail latency or extreme load patterns.
-
----
-
-## Step 7: Inspect Metric Metadata
-
-1. In Metric Explorer, click **Show Advanced**.
-2. Review:
-
-   * Interval (1 min, 5 min, 1 hr)
-   * Aggregation methods
-   * Default retention period
-
-This helps SRE understand metric accuracy for SLO computations.
-
----
-
-## Step 8: Validate Custom Metrics Support (Optional)
-
-1. In namespaces dropdown, search for any prefix such as:
-
-```
-custom.
-```
-
-2. If available, expand and inspect.
-
-### Why
-
-Developers may choose to instrument code for SLI-aligned metrics.
-
----
-
-# 6. Expected Output / Verification
-
-You should be able to confirm:
-
-* Compute instance shows CPU, memory, and network metrics.
-* Cloud Agent plugins are enabled.
-* Metric Explorer returns compute metrics.
-* Multiple namespaces are visible.
-* Able to filter metrics by instance OCID.
-* Able to switch statistics successfully.
-
-Verification checklist:
-
-```
-[ ] Compute metrics visible
-[ ] Metric namespaces identified
-[ ] Dimensions applied correctly
-[ ] Percentile statistics used
-```
-
----
-
-# 7. Troubleshooting Guidelines
-
-**Metrics not visible:**
-
-* Enable Cloud Agent plugins.
-* Ensure instance is RUNNING.
-* Switch compartments in Metric Explorer.
-
-**No matching namespace:**
-
-* Select correct region.
-* Expand list fully; names may appear lower alphabetically.
-
-**Filtering issues:**
-
-* Clear filters.
-* Re-select instance OCID.
-* Ensure correct time window selected.
-
----
-
-# 8. Best Practices Learned
-
-* Always verify Cloud Agent plugins when metrics seem missing.
-* Use p95/p99 metrics instead of averages.
-* Naming and tagging for custom metrics must be consistent.
-* Keep SLI-related metrics minimal and meaningful.
-
----
-
-# 9. Additional Notes
-
-* These learned skills will be used in the next subtopic: **Alarms and Notifications**.

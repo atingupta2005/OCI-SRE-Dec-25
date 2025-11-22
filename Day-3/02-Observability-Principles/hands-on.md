@@ -1,263 +1,195 @@
-# Day 3 – Toil Reduction, Observability, and Automation
+# **Day 3 – Hands-On: Observability Principles (Using Class Enrollment App VM)**
 
-## Hands-On Lab: Observability Principles (Metrics, Logs, and Traces)
+## **Student-Friendly Document with Solutions Key**
 
-### TOC Reference: Day 3 → Toil Reduction, Observability, and Automation → Hands-On for Observability Principles
-
-### Audience Context: IT Engineers and Developers
-
-All steps follow the latest OCI Console interface at the time of writing.
+This hands-on introduces students to the fundamentals of **observability** and helps them practice enabling and viewing system logs in OCI. The exercises use the Compute instance hosting the **Class Enrollment Web App**.
 
 ---
 
-# 1. Background and Purpose
+# **1. Background Concepts (Short, Clear & Practical)**
 
-This hands-on lab focuses on enabling observability signals — **metrics, logs, and traces** — for a Compute instance and application hosted on OCI.
-By the end of this lab, participants will:
+## **1.1 Monitoring vs Observability**
 
-* Enable system logs for Compute,
-* View logs in Log Explorer,
-* Explore metrics already collected,
-* Understand how these signals support troubleshooting and SLO analysis.
+**Monitoring** answers: *“Is the system healthy?”*
 
-Traces are optional depending on whether tracing is enabled in the application.
+* Uses predefined metrics
+* Detects known failure modes
+* Examples: CPU, memory, uptime, error count
 
----
+**Observability** answers: *“Why is the system behaving this way?”*
 
-# 2. Objectives
+* Allows root cause analysis
+* Handles unknown failure modes
+* Uses metrics, logs, and traces together
 
-* Enable and validate system logs for a Compute instance.
-* Explore application logs in Log Explorer.
-* Review metrics in Metric Explorer.
-* Understand how metrics, logs, and traces help diagnose issues.
+### **Simple example:**
 
----
-
-# 3. Prerequisites
-
-### OCI Requirements
-
-* A running Compute instance.
-* Cloud Agent enabled.
-* Logging and Monitoring permissions.
-
-### Knowledge Requirements
-
-* Understanding of observability pillars (from theory).
+* **Monitoring:** CPU is 95% → anomaly detected
+* **Observability:** Logs show DB errors → traces show slow queries → root cause found
 
 ---
 
-# 4. Architecture / Diagram
+## **1.2 Observability Signals**
 
-```
-Compute / Application
-   |       |       |
-   |       |       +--> Traces (optional)
-   |       +-----------> Logs
-   +--------------------> Metrics
+Observability in SRE relies on **three core signals**:
 
-Metrics + Logs + Traces → Observability → RCA / Troubleshooting
-```
+### **1. Metrics**
 
----
+* Numerical values over time
+* Fast to query, great for dashboards
+* Examples: CPU, latency, request count
 
-# 5. Step-by-Step Procedure
+### **2. Logs**
 
-## Step 1: Verify Cloud Agent Plugins
+* Text-based, detailed events
+* Useful for debugging specific issues
+* Examples: errors, warnings, access logs
 
-1. Open OCI Console.
-2. Navigate to **Compute → Instances**.
-3. Select your instance.
-4. On the left navigation pane, choose **Oracle Cloud Agent**.
+### **3. Traces**
 
-Ensure the following plugins are **enabled**:
+* End-to-end request path tracking
+* Shows where time is spent in request flows
+* Example: login request → DB lookup → response
 
-* Compute Instance Monitoring
-* Management Agent
-* Logging
-
-If disabled:
-
-* Click **Enable** → wait for plugin health to update.
+In this lab, students focus on **logs**.
 
 ---
 
-## Step 2: Enable System Logs for Compute
+## **1.3 Instrumentation Basics**
 
-1. In the instance page, go to **Resources → Logging**.
-2. Click **Enable Logging**.
-3. Select log types:
+Instrumentation is how systems generate observability data.
 
-   * `/var/log/messages`
-   * `/var/log/secure`
-   * `/var/log/cloud-init.log`
-4. Select a Log Group or create a new one.
-5. Click **Enable**.
+* Metrics → counters, gauges
+* Logs → structured log entries
+* Traces → spans and propagation
 
-### Verify
-
-* Logs start flowing within 1–2 minutes.
+The Class Enrollment App uses Flask + React, which naturally produces application logs. OCI Compute produces **system logs**, which we will enable.
 
 ---
 
-## Step 3: View System Logs in Log Explorer
+# **2. Hands-On Task 1 — Enable System Logs for Compute Instance**
 
-1. Navigate to:
-   **Observability & Management → Logging → Log Explorer**.
-2. Select your Log Group.
-3. Use filters:
+## **Purpose:** Ensure your VM emits system logs to OCI Logging.
 
-   * Resource: your instance OCID
-   * Log Type: system logs
-4. View entries with timestamps.
+These logs help SREs:
 
-### Observations
-
-* System reboots
-* SSH login events
-* Service failures
+* Diagnose OS-level issues
+* Debug app crashes
+* Track network or disk failures
 
 ---
 
-## Step 4: Inspect Application Logs (If Available)
+## **Steps:**
 
-If your app writes logs to:
+1. Open the **Navigation Menu (☰)**.
+2. Go to **Compute → Instances**.
+3. Select your instance: `<student-id>-compute-training`.
+4. Scroll down to **Resources → Management**.
+5. Click **Logging**.
+6. Click **Enable Logging**.
+7. Choose:
 
-* `/var/log/app/*.log`
-* `/usr/local/app/logs/`
-* Custom log locations
-
-Enable them similarly:
-
-1. Navigate to the instance → **Logging**.
-2. Add a new log.
-3. Provide the log file path.
-4. Store in the same Log Group.
-
----
-
-## Step 5: Explore Metrics in Metric Explorer
-
-1. Navigate to:
-   **Observability & Management → Monitoring → Metric Explorer**.
-
-2. Review available namespaces:
-
-   * `oci_computeagent`
-   * `oci_computeapi`
-   * `oci_blockstore`
-   * `oci_lbaas` (if LB exists)
-
-3. Select metrics such as:
-
-   * `CpuUtilization`
-   * `MemoryUtilization`
-   * `NetworkBytesIn`
-   * `NetworkBytesOut`
-
-### Apply Filters
-
-* Dimension: `resourceId`
-* Choose your instance.
-
-### Switch Statistics
-
-* mean
-* max
-* p95/p99 (for latency metrics only)
+   * **Log Group:** Create one → `<student-id>-log-group`
+   * **Log Name:** `<student-id>-syslog`
+   * **Source:** System logs
+8. Click **Enable Log**.
 
 ---
 
-## Step 6: Perform Correlation Exercise
+## **Expected Result:**
 
-Use logs and metrics together:
-
-### Scenario Example
-
-During a test, you generate CPU load:
-
-1. Run on instance:
-
-```
-sudo dnf install -y stress-ng
-sudo stress-ng --cpu 4 --timeout 60
-```
-
-2. In Metric Explorer, observe CPUUtilization increase.
-3. In Log Explorer, observe system logs during spike.
-
-### Outcome
-
-This helps understand how metrics + logs together support root-cause analysis.
+* System log begins receiving entries within a few minutes
+* Status shows **Active**
 
 ---
 
-## Step 7: (Optional) Explore Traces if Application Supports It
+# **3. Hands-On Task 2 — View Logs in OCI Logging**
 
-If your application sends traces via OTEL or any tracing library:
-
-* Navigate to **Observability → Application Performance Monitoring**.
-* View service map.
-* Inspect trace spans for slow requests.
-
-If tracing is not enabled, skip this step.
+## **Purpose:** Learn how to explore and analyze system logs.
 
 ---
 
-# 6. Expected Output / Verification
+## **Steps:**
 
-You should be able to:
+1. Open **Navigation Menu → Observability & Management → Logging**.
+2. Click **Log Groups**.
+3. Select your log group: `<student-id>-log-group`.
+4. Open your log: `<student-id>-syslog`.
+5. Click **Search** to filter and inspect logs.
+6. Try queries such as:
 
-* View system logs from the Compute instance.
-* Filter and analyze logs based on timestamp and event type.
-* Query system metrics via Metric Explorer.
-* Correlate logs and metrics during resource activity.
-* (Optional) View traces if enabled.
-
-Verification Checklist:
-
-```
-[ ] Cloud Agent plugins enabled
-[ ] System logs visible in Log Explorer
-[ ] Application logs visible (if applicable)
-[ ] Metrics queryable in Metric Explorer
-[ ] Logs and metrics correlation observed
-```
+   * `level = 'ERROR'`
+   * `text LIKE 'systemd'`
+   * `text LIKE 'ssh'`
 
 ---
 
-# 7. Troubleshooting Guidelines
+## **What You Should See:**
 
-**Logs not visible:**
-
-* Ensure correct Log Group selected.
-* Confirm file-based logging path.
-* Check Cloud Agent log plugin status.
-
-**Metrics missing:**
-
-* Ensure instance is running.
-* Verify compute monitoring plugin.
-* Confirm namespace selection.
-
-**Traces not visible:**
-
-* Application tracing might not be enabled.
-* Verify APM or external tracing setup.
+* Boot messages
+* System events (systemd services)
+* SSH login attempts
+* Kernel messages (depending on OS)
 
 ---
 
-# 8. Best Practices Learned
+# **4. Summary of the Hands-On**
 
-* Always enable system logs for production workloads.
-* Use structured logs with consistent fields.
-* Use percentiles to understand outliers.
-* Correlate metrics + logs to identify root causes.
-* Use tracing for distributed or microservices architectures.
+In this exercise, you learned how to:
+
+* Understand monitoring vs observability
+* Identify the three signals (metrics, logs, traces)
+* Enable system logs on a compute instance
+* Use OCI Logging to search, filter, and read logs
+
+These form the foundation for debugging, incident resolution, and SLO validation.
 
 ---
 
-# 9. Additional Notes
+# **5. Solutions Key (Instructor Reference)**
 
-* Tracing is optional but highly beneficial for distributed apps.
-* This lab prepares you for Subtopic 3 (Logging-Based Metrics).
+Use this section to verify student results.
+
+---
+
+# **✔ Solution Key — Task 1: Enable System Logs**
+
+### Expected Settings:
+
+* Log Group: `<student-id>-log-group`
+* Log Name: `<student-id>-syslog`
+* Source: System Logs
+* Status: **Active**
+
+### Expected Student Outcome:
+
+* VM syslog entries appear within minutes
+* Log group shows new log stream
+
+---
+
+# **✔ Solution Key — Task 2: View Logs in Logging Service**
+
+### Expected Logs to Appear:
+
+* `systemd` service messages
+* SSH logs (e.g., accepted/failed login attempts)
+* Kernel events
+* Boot process messages
+
+### Expected Working Queries:
+
+* `level = 'ERROR'` → shows system errors
+* `text LIKE 'ssh'` → reveals SSH login logs
+* `text LIKE 'systemd'` → shows service-level events
+
+### Why This Matters:
+
+These logs:
+
+* Help diagnose VM failures
+* Support troubleshooting of the Class Enrollment App
+* Provide audit-level visibility into system events
+
+---
+

@@ -1,236 +1,189 @@
-# Day 2 – Measuring Reliability and Monitoring on OCI
+# **Day 2 – Hands-On: Creating Alarms & Notification Channels (Using Class Enrollment App VM)**
 
-## Hands-On Lab: Creating Alarms and Notifications
+* Create an **alarm** for CPU usage on the Compute instance running the Class Enrollment App
+* Configure an **email notification channel** so alarms can send alerts
 
-### TOC Reference: Day 2 → Measuring Reliability and Monitoring on OCI → Hands-on for Alarms and Notifications
-
-### Audience Context: IT Engineers and Developers
-
-All steps in this lab follow the latest OCI Console interface at the time of writing.
+This mirrors real SRE workflows where alerts detect unhealthy system behavior (e.g., CPU spikes from enrollment bursts).
 
 ---
 
-# 1. Background and Purpose
+# **1. Objective of This Hands-On**
 
-This hands-on lab focuses on setting up **OCI Alarms** and configuring **OCI Notifications** to ensure reliability issues are detected and communicated in real time.
-Participants will:
+By completing this exercise, students will:
 
-* Create a Notifications Topic.
-* Add an email subscription.
-* Configure a CPU-based alarm.
-* Validate alarm states and trigger behavior.
+* Understand how OCI alarms work
+* Configure triggers for CPU usage
+* Set up an email notification topic
+* Attach the topic to the alarm
+* Validate that the alarm is active
 
-This aligns directly with SRE practices, where actionable alerts must be tied to real user-impacting signals.
-
----
-
-# 2. Objectives
-
-* Create a Notifications Topic.
-* Subscribe an email address for alert delivery.
-* Create a threshold alarm for CPU usage.
-* Understand alarm states and evaluation periods.
-* Validate alarm triggering.
+This prepares learners for SLO-based alerting and incident response in later sessions.
 
 ---
 
-# 3. Prerequisites
+# **2. Task 1 — Create an Alarm for CPU Usage**
 
-### OCI Requirements
+## **Purpose:** Monitor CPU load of the Compute instance running the Class Enrollment app.
 
-* Compute instance (VM or Bare Metal) in RUNNING state.
-* Monitoring and Notifications permissions:
-
-  * `monitoring.*`
-  * `ons.*`
-  * `instance-family.read`
-
-### Knowledge Requirements
-
-* Understanding of metrics from Subtopic 2.
+This ensures you are alerted when the application becomes overloaded due to high student activity.
 
 ---
 
-# 4. Architecture / Diagram
+## **Steps:**
 
-```
-Metric (CPUUtilization)
-       |
-       v
- OCI Alarm Rule → Notification Topic → Email Subscriber
-```
-
----
-
-# 5. Step-by-Step Procedure
-
-## Step 1: Create a Notifications Topic
-
-1. Open OCI Console.
-2. Navigate to:
-   **Observability & Management → Notifications → Topics**.
-3. Click **Create Topic**.
-4. Provide:
-
-   * Name: `cpu-alerts-topic`
-   * Description: `Topic for CPU threshold alarms`
-5. Click **Create**.
-
-### Verify
-
-Topic appears in the topics list.
-
----
-
-## Step 2: Create an Email Subscription
-
-1. Open the newly created topic.
-2. Click **Create Subscription**.
-3. Choose Protocol: **Email**.
-4. Enter your email address.
-5. Click **Create**.
-6. Check your inbox for a confirmation email.
-7. Click **Confirm Subscription**.
-
-### Verify
-
-Subscription shows status **CONFIRMED**.
-
----
-
-## Step 3: Open Monitoring → Alarms
-
-1. Navigate to:
-   **Observability & Management → Monitoring → Alarms**.
-2. Click **Create Alarm**.
-
----
-
-## Step 4: Define Alarm Details
-
-1. Name: `high-cpu-alarm`
-2. Severity: **Critical** or **Warning** (choose based on environment)
-3. Metric Namespace: `oci_computeagent`
-4. Metric Name: `CpuUtilization`
-5. Dimensions:
-
-   * resourceId → Select your instance OCID
-
----
-
-## Step 5: Configure Alarm Trigger Rule
-
-1. Choose **Threshold** type.
-2. Set Condition:
-
-   * **CpuUtilization > 80%**
-3. Trigger Delay:
-
-   * **5 minutes** (avoids noise)
-4. Evaluation Window:
-
-   * 5 minutes or 1 minute depending on sensitivity.
-
-Example Query (auto-generated):
-
-```
-CpuUtilization[5m].mean() > 80
-```
-
----
-
-## Step 6: Set the Notification Channel
-
-1. Under **Notifications**, choose the topic created earlier:
-
-   * `cpu-alerts-topic`
-2. Leave default repeat notifications.
+1. Open the **Navigation Menu (☰)**.
+2. Go to **Observability & Management → Alarms**.
 3. Click **Create Alarm**.
+4. Fill the fields:
 
-### Verify
+   * **Name:** `<student-id>-cpu-alarm`
+   * **Compartment:** Select your training compartment.
+5. Under **Alarm Query**, choose:
 
-Alarm appears in the alarms list.
+   * **Metric Namespace:** `oci_computeagent`
+   * **Metric Name:** `CpuUtilization`
+   * **Resource:** Select your instance: `<student-id>-compute-training`
+6. Choose trigger settings:
 
----
-
-## Step 7: Test Alarm Firing (Optional)
-
-To simulate high CPU:
-
-1. SSH into your compute instance.
-2. Run:
-
-```
-sudo dnf install -y stress-ng
-sudo stress-ng --cpu 4 --timeout 300
-```
-
-3. Monitor alarm state in console:
-
-   * Navigate to Monitoring → Alarms
-   * Watch **state = FIRING** after threshold breach.
-
-### Notes
-
-Alarms evaluate based on **evaluation intervals**, so firing may take a few minutes.
+   * **Statistic:** `Mean`
+   * **Operator:** `Greater than`
+   * **Threshold:** `70`
+   * **Trigger Delay:** `1 minute`
+7. Set **Severity:** `Warning` (or `Critical` if desired).
+8. Scroll down and leave **Notifications** empty for now (we add the email channel next).
+9. Click **Create Alarm**.
 
 ---
 
-# 6. Expected Output / Verification
+## **What You Should See:**
 
-You should be able to validate:
+* Alarm appears in the list
+* Status: **`OK`** (normal)
+* Query correctly references `CpuUtilization`
 
-* Notifications topic created.
-* Email subscription confirmed.
-* Alarm created successfully.
-* Alarm tied to correct instance & metric.
-* Ability to observe alarm firing when CPU threshold is exceeded.
-
-Verification Checklist:
-
-```
-[ ] Topic created
-[ ] Email subscription confirmed
-[ ] Alarm visible in list
-[ ] Alarm bound to CpuUtilization metric
-[ ] Alarm triggers in test scenario
-```
+Once CPU exceeds 70% for 1 minute, the alarm will enter **`FIRING`** state.
 
 ---
 
-# 7. Troubleshooting Guidelines
+# **3. Task 2 — Add an Email Notification Channel**
 
-**Subscription not receiving emails:**
+## **Purpose:** Set up a path for alerts to reach you.
 
-* Check spam folder.
-* Confirm subscription manually.
-* Re-add subscription.
-
-**Alarm not firing:**
-
-* Lower threshold temporarily.
-* Increase CPU load.
-* Verify correct metric namespace.
-* Confirm evaluation interval.
-
-**Metric missing:**
-
-* Ensure Cloud Agent plugins are enabled.
-* Refresh Metric Explorer to validate.
+Notifications in OCI use the **Notifications Service**, which relies on **Topics** and **Subscriptions**.
 
 ---
 
-# 8. Best Practices Learned
+## **Steps:**
 
-* Always test alarms after creation.
-* Use appropriate severity levels.
-* Avoid short evaluation periods to reduce noise.
-* Integrate email with on-call rotation.
-* Tie alarms to SLI-based thresholds for meaningful alerts.
+### **A. Create a Topic**
+
+1. Open **Navigation Menu → Application Integration → Notifications**.
+2. Click **Topics**.
+3. Click **Create Topic**.
+4. Name the topic:
+
+   * `<student-id>-cpu-topic`
+5. Click **Create**.
 
 ---
 
-# 9. Additional Notes
+### **B. Add an Email Subscription**
 
-* Alarms can also push to HTTPS endpoints for Slack or PagerDuty.
-* Composite alarms help reduce false positives.
+1. Open the topic you just created.
+2. Click **Create Subscription**.
+3. Choose:
+
+   * **Protocol:** `Email`
+   * **Endpoint:** your email ID
+4. Click **Create**.
+5. Check your email inbox and **confirm the subscription**.
+
+(If you don’t confirm, you will NOT receive alarm notifications.)
+
+---
+
+### **C. Attach the Notification Topic to Your Alarm**
+
+1. Return to **Observability & Management → Alarms**.
+2. Click your alarm name: `<student-id>-cpu-alarm`.
+3. Click **Edit Alarm**.
+4. Under **Notifications**, choose the topic:
+
+   * `<student-id>-cpu-topic`
+5. Save changes.
+
+---
+
+## **What You Should See:**
+
+* Alarm now lists **1 Notification Channel**
+* Topic is active
+* Subscription is confirmed
+
+Your alarm is now fully functional.
+
+If CPU crosses 70%, you will receive an email alert.
+
+---
+
+# **4. Summary of the Hands-On**
+
+In this lab you learned how to:
+
+* Monitor the Compute VM hosting the Class Enrollment Application
+* Create a CPU alarm using default OCI metrics
+* Configure an email notification channel via Topics and Subscriptions
+* Attach notifications to the alarm
+
+This is the foundation for SRE alerting workflows.
+
+---
+
+# **5. Solutions Key (Instructor Reference)**
+
+Use this to verify student work.
+
+---
+
+# **✔ Solution Key — Task 1: CPU Alarm**
+
+### Expected alarm settings:
+
+* **Name:** `<student-id>-cpu-alarm`
+* **Namespace:** `oci_computeagent`
+* **Metric Name:** `CpuUtilization`
+* **Resource:** `<student-id>-compute-training`
+* **Threshold:** `> 70%`
+* **Delay:** `1 minute`
+* **Severity:** `Warning` (acceptable: Critical)
+
+### Expected results:
+
+* Alarm status = **OK** initially
+* Query correctly displays in preview
+
+---
+
+# **✔ Solution Key — Task 2: Email Notification Channel**
+
+### Topic:
+
+* **Name:** `<student-id>-cpu-topic`
+
+### Subscription:
+
+* **Protocol:** Email
+* **Status:** *Confirmed*
+
+### Alarm configuration:
+
+* Alarm now includes **notification topic**
+* Email address verified
+
+### Expected outcome:
+
+* A test spike over 70% CPU triggers an email
+
+---
+
+# **End of Hands-On Document**
