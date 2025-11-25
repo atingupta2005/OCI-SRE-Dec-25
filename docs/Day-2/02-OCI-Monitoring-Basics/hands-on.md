@@ -81,8 +81,8 @@ Metrics for Compute are enabled automatically **if the OCI Monitoring Agent is i
 1. Open the **Navigation Menu (☰)**.
 2. Go to **Compute → Instances**.
 3. Click your instance: `*<student-id>-compute-training*`.
-4. Scroll down to the **Resources** section.
-5. Click **Metrics**.
+4. Open **Monitoring** section.
+5. Check **Metrics**.
 6. Confirm that graphs for CPU, Network, or Disk are visible.
 
 ---
@@ -113,7 +113,7 @@ Compute metrics are the first signals SREs check during incidents. They help ans
 
 ### **Purpose:** Learn how to explore metric namespaces and names in OCI.
 
-This exercise helps students understand how OCI organizes metrics.
+This exercise helps understand how OCI organizes metrics.
 
 ---
 

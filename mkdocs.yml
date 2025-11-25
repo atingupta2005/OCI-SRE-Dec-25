@@ -1,84 +1,47 @@
-site_name: SRE & OCI Training
-site_description: Instructor-led SRE & OCI training materials — theory, hands-on lab
-  guides, and reference.
+site_name: SRE Concepts
+site_description: "SRE Concepts Knowledge Base"
+
 theme:
   name: material
+  custom_dir: docs/overrides
   features:
-  - navigation.instant
-  - navigation.tabs
-  - navigation.expand
-  - content.tabs.link
-  - search.highlight
-  - search.share
-  - content.code.copy
-  - toc.integrate
-  palette:
-  - scheme: default
-    primary: blue
-    accent: indigo
-  - scheme: slate
-    primary: blue
-    accent: indigo
-nav:
-- Home: index.md
-- Day 1:
-  - Introduction To Sre:
-    - Hands On: day-1/introduction-to-sre/hands-on.md
-    - Index: day-1/introduction-to-sre/index.md
-  - Oci Core Architecture:
-    - Hands On: day-1/oci-core-architecture/hands-on.md
-    - Index: day-1/oci-core-architecture/index.md
-  - Slis Slos And Error Budgets:
-    - Hands On: day-1/slis-slos-and-error-budgets/hands-on.md
-    - Index: day-1/slis-slos-and-error-budgets/index.md
-  - Sre Vs Devops Vs Platform Engineering:
-    - Hands On: day-1/sre-vs-devops-vs-platform-engineering/hands-on.md
-    - Index: day-1/sre-vs-devops-vs-platform-engineering/index.md
-- Day 2:
-  - Alarms And Notifications:
-    - Hands On: day-2/alarms-and-notifications/hands-on.md
-    - Index: day-2/alarms-and-notifications/index.md
-  - Dashboards And Visualization:
-    - Hands On: day-2/dashboards-and-visualization/hands-on.md
-    - Index: day-2/dashboards-and-visualization/index.md
-  - Designing Slis And Slos:
-    - Hands On: day-2/designing-slis-and-slos/hands-on.md
-    - Index: day-2/designing-slis-and-slos/index.md
-  - Oci Monitoring Basics:
-    - Hands On: day-2/oci-monitoring-basics/hands-on.md
-    - Index: day-2/oci-monitoring-basics/index.md
-- Day 3:
-  - Automation With Resource Manager:
-    - Hands On: day-3/automation-with-resource-manager/hands-on.md
-    - Index: day-3/automation-with-resource-manager/index.md
-  - Logging Based Metrics:
-    - Hands On: day-3/logging-based-metrics/hands-on.md
-    - Index: day-3/logging-based-metrics/index.md
-  - Observability Principles:
-    - Hands On: day-3/observability-principles/hands-on.md
-    - Index: day-3/observability-principles/index.md
-  - Understanding Toil:
-    - Hands On: day-3/understanding-toil/hands-on.md
-    - Index: day-3/understanding-toil/index.md
-- Day 4:
-  - High Availability Design:
-    - Hands On: day-4/high-availability-design/hands-on.md
-    - Index: day-4/high-availability-design/index.md
-  - Incident Response And Postmortem:
-    - Hands On: day-4/incident-response-and-postmortem/hands-on.md
-    - Index: day-4/incident-response-and-postmortem/index.md
-  - Resilience And Recovery:
-    - Hands On: day-4/resilience-and-recovery/hands-on.md
-    - Index: day-4/resilience-and-recovery/index.md
-markdown_extensions:
-- admonition
-- codehilite
-- toc:
-    permalink: true
-- tables
-- attr_list
-- footnotes
-- md_in_html
-- def_list
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - content.code.copy
+
+
 plugins:
-- search
+  - search:
+      lang:
+        - en
+      separator: '[\s\-\.]+'
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - smarty
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.highlight
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.arithmatex
+  - toc:
+      permalink: true
+
+
+extra_javascript:
+  - js/bookmarks.js
+
+extra_css:
+  - stylesheets/bookmarks.css

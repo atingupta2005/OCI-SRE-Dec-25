@@ -14,8 +14,8 @@ A Virtual Cloud Network (VCN) is similar to a private data center inside OCI. Ev
 
 1. Open the **Navigation Menu (☰)**.
 2. Go to **Networking → Virtual Cloud Networks**.
-3. Click **Create VCN**.
-4. Select **VCN with Internet Connectivity**.
+3. Click **Actions -> Start VCN Wizard**.
+4. Select **Create VCN with Internet Connectivity**.
 5. Fill in:
 
    * **VCN Name:** `<student-id>-vcn-core`
@@ -63,10 +63,10 @@ Compute is where applications, tools, and workloads actually run.
    * **Name:** `<student-id>-compute-training`
 4. Choose OS:
 
-   * **Oracle Linux – Latest**
+   * **Oracle Linux 9**
 5. Choose shape:
 
-   * **VM.Standard3.Flex**
+   * **VM.Standard.E5.Flex**
    * OCPUs: `1`
    * Memory: `4 GB`
 6. Under **Networking**:
@@ -146,7 +146,7 @@ SREs often help define least-privilege IAM policies for teams.
 
 ## **Part A — Create a Group**
 
-1. Open **Navigation Menu → Identity & Security → Domains → Default → Groups**.
+1. Open **Navigation Menu → Identity & Security → Domains → Default → User Management → Groups**.
 2. Click **Create Group**.
 3. Name it: `<student-id>-group-training`.
 4. Click **Create**.
@@ -162,7 +162,7 @@ SREs often help define least-privilege IAM policies for teams.
 5. Add this policy:
 
 ```
-Allow group `<student-id>-group-training` to inspect all-resources in compartment `<student-id>-compartment`
+Allow group '<student-id>-group-training' to inspect all-resources in compartment '<student-id>-compartment'
 ```
 
 6. Click **Create**.
