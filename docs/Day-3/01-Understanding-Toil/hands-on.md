@@ -1,14 +1,14 @@
-# **Day 3 – Hands-On: Understanding Toil (Using Class Enrollment App Ops)**
 
-## **Instructor-Optimized, Student-Friendly Version with Solutions Key**
+## Hands-on Lab
+
+## Instructor-Optimized, Student-Friendly Version with Solutions Key
 
 This hands-on activity helps students understand **toil**, identify it in day‑to‑day operations, and practice prioritizing automation work. The exercise uses the **Class Enrollment Web App** as the operational environment.
 
----
 
-# **1. Background Concepts (Short & Clear)**
+## 1. Background Concepts (Short & Clear)
 
-## **1.1 What Is Toil?**
+## 1.1 What Is Toil?
 
 **Toil** is manual, repetitive, automatable work that:
 
@@ -17,16 +17,15 @@ This hands-on activity helps students understand **toil**, identify it in day‑
 * Scales linearly with service growth
 * Happens frequently and consumes engineering time
 
-### **Examples of toil:**
+### Examples of toil:
 
 * Restarting services when CPU spikes
 * Manually checking logs for common errors
 * Updating enrollment capacity in database by hand
 * Responding to the same alert repeatedly
 
----
 
-## **1.2 Why Reduce Toil?**
+## 1.2 Why Reduce Toil?
 
 Reducing toil helps teams:
 
@@ -35,9 +34,8 @@ Reducing toil helps teams:
 * Reduce burnout and on-call fatigue
 * Ensure repeatable and error-free operations
 
----
 
-## **1.3 Automation Prioritization Basics**
+## 1.3 Automation Prioritization Basics
 
 Automation should be prioritized when a task is:
 
@@ -48,15 +46,14 @@ Automation should be prioritized when a task is:
 
 Tasks that are rare or require deep human judgment are *not* good automation candidates.
 
----
 
-# **2. Hands-On Activity 1 — List Manual Operational Tasks in the Sample App**
+## 2. Hands-On Activity 1 — List Manual Operational Tasks in the Sample App
 
 ## **Purpose:** Identify real toil based on the Class Enrollment application.
 
 Imagine you are running the **Class Enrollment Web App** in production. List all tasks that require manual operator effort.
 
-### **Student Instructions:**
+### Student Instructions:
 
 Use the table below to list **at least 6–10 manual tasks** you think an operator would perform.
 
@@ -72,9 +69,8 @@ Examples include: restarts, log checks, user provisioning, database cleanup, etc
 
 Be detailed—this will help in the automation ranking.
 
----
 
-# **3. Hands-On Activity 2 — Rank Tasks by Time & Frequency**
+## 3. Hands-On Activity 2 — Rank Tasks by Time & Frequency
 
 ## **Purpose:** Learn how SREs prioritize automation work.
 
@@ -96,7 +92,7 @@ TOIL SCORE = Time × Frequency
 
 Higher score = higher priority for automation.
 
-### **Student Table:**
+### Student Table:
 
 | Task | Time (T) | Frequency (F) | Toil Score (T×F) | Automation Priority (Low/Med/High) |
 | ---- | -------- | ------------- | ---------------- | ---------------------------------- |
@@ -106,9 +102,8 @@ Higher score = higher priority for automation.
 |      |          |               |                  |                                    |
 |      |          |               |                  |                                    |
 
----
 
-# **4. Summary of the Hands-On**
+## 4. Summary of the Hands-On
 
 In this hands-on, students practiced how SREs:
 
@@ -119,15 +114,13 @@ In this hands-on, students practiced how SREs:
 
 These are foundational skills for building reliable systems with minimal overhead.
 
----
 
-# **5. Solutions Key (Instructor Reference)**
+## 5. Solutions Key (Instructor Reference)
 
 Below is a sample solution set. Student answers will vary depending on assumptions.
 
----
 
-# **✔ Solution Key — Activity 1: Common Manual Tasks**
+## ✔ Solution Key — Activity 1: Common Manual Tasks
 
 Expected examples:
 
@@ -140,9 +133,8 @@ Expected examples:
 | Resetting passwords for users      | Admin intervention             | High-frequency support request          |
 | Fixing CORS configuration manually | Editing config file            | Should be automated via IaC             |
 
----
 
-# **✔ Solution Key — Activity 2: Ranking Tasks by Toil Score**
+## ✔ Solution Key — Activity 2: Ranking Tasks by Toil Score
 
 Sample scoring:
 
@@ -155,13 +147,12 @@ Sample scoring:
 | Cleaning stale sessions  | 3 | 3 | 9          | Medium   |
 | Fixing CORS config       | 5 | 1 | 5          | Low      |
 
-### **Why these priorities are correct:**
+### Why these priorities are correct:
 
 * Log checks + restarts happen frequently → top candidates for automation.
 * Password resets are high-frequency → automate via self‑service UI.
 * Updating course capacity is done during peak seasons → strong automation candidate.
 * CORS fixes are rare → low automation value.
 
----
 
-# **End of Hands-On Document**
+## End of Hands-On Document

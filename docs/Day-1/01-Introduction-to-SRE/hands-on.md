@@ -1,6 +1,7 @@
-# **Day 1 – Introduction to SRE: Hands-On with OCI Console**
 
-# **1. Objective of This Hands-On Session**
+## Hands-on Lab
+
+## 1. Objective of This Hands-On Session
 
 By the end of this exercise, learners should be able to:
 
@@ -11,39 +12,37 @@ By the end of this exercise, learners should be able to:
 
 This exercise is intentionally simple. It ensures everyone—regardless of background—starts with the same understanding of the cloud environment.
 
----
 
-# **2. Accessing the OCI Console**
+## 2. Accessing the OCI Console
 
-### **Purpose:** Reach the main cloud dashboard where all resources are managed.
+### Purpose: Reach the main cloud dashboard where all resources are managed.
 
-### **Steps:**
+### Steps:
 
 1. Open your browser.
 2. Go to **[https://cloud.oracle.com](https://cloud.oracle.com)**.
 3. Sign in using your OCI account.
 
-### **Why it matters:**
+### Why it matters:
 
 Every operational task begins here—provisioning compute, viewing logs, checking metrics, responding to incidents. This is the control room for the cloud.
 
-### **What you should see:**
+### What you should see:
 
 A homepage showing recent resources, tenancy details, and the left-side navigation menu.
 
----
 
-# **3. Navigating to the Compute Service**
+## 3. Navigating to the Compute Service
 
-### **Purpose:** Understand where virtual machines (instances) are created and managed.
+### Purpose: Understand where virtual machines (instances) are created and managed.
 
-### **Steps:**
+### Steps:
 
 1. Open the **Navigation Menu (☰)**.
 2. Go to **Compute**.
 3. Click **Instances**.
 
-### **Why it matters:**
+### Why it matters:
 
 In SRE work, Compute is often the first stop:
 
@@ -54,7 +53,7 @@ In SRE work, Compute is often the first stop:
 
 Whether you run an application, a script, or an automation tool—Compute is the base layer.
 
-### **What you should see:**
+### What you should see:
 
 A list of VM instances (or an empty list). From here you can:
 
@@ -64,20 +63,19 @@ A list of VM instances (or an empty list). From here you can:
 
 This page becomes important later during monitoring and incident simulations.
 
----
 
-# **4. Navigating to the Monitoring Service**
+## 4. Navigating to the Monitoring Service
 
-### **Purpose:** Learn where to view system health indicators such as CPU, memory, latency, and custom metrics.
+### Purpose: Learn where to view system health indicators such as CPU, memory, latency, and custom metrics.
 
-### **Steps:**
+### Steps:
 
 1. Open the **Navigation Menu (☰)**.
 2. Scroll to **Observability & Management**.
 3. Click **Monitoring**.
 4. Select **Metric Explorer**.
 
-### **Why it matters for SRE:**
+### Why it matters for SRE:
 
 Monitoring is one of the pillars of Site Reliability Engineering. You will use it to:
 
@@ -88,7 +86,7 @@ Monitoring is one of the pillars of Site Reliability Engineering. You will use i
 
 SREs rely more on metrics and dashboards than on logs or consoles during active incidents.
 
-### **What you should see:**
+### What you should see:
 
 A clean interface showing metrics grouped by resource type. You will later use this to:
 
@@ -96,9 +94,8 @@ A clean interface showing metrics grouped by resource type. You will later use t
 * analyze spikes or declines in performance
 * view multi-dimensional time-series data
 
----
 
-# **5. Key Takeaways for Learners**
+## 5. Key Takeaways for Learners
 
 * **Compute = where things run.** This is the execution environment.
 * **Monitoring = how we observe system health.** This is your early‑warning system.
@@ -107,17 +104,15 @@ A clean interface showing metrics grouped by resource type. You will later use t
 
 This foundational knowledge ensures everyone is ready for deeper SRE concepts such as incident response, alerting, dashboards, and reliability analysis.
 
----
 
-# **6. Quick Reference (Keep Handy)**
+## 6. Quick Reference (Keep Handy)
 
-### **Compute Location:**
+### Compute Location:
 
 ☰ → **Compute** → **Instances**
 
-### **Monitoring Location:**
+### Monitoring Location:
 
 ☰ → **Observability & Management** → **Monitoring** → **Metric Explorer**
 
----
 

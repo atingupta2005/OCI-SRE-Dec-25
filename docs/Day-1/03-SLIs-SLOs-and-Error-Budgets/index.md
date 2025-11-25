@@ -4,7 +4,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 This subtopic introduces **SLIs (Service Level Indicators)**, **SLOs (Service Level Objectives)**, and **Error Budgets**, which together form the foundational reliability measurement framework in SRE.
 
@@ -12,7 +12,7 @@ For IT engineers and developers, these concepts translate production behaviour i
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### IT Engineers
 
@@ -36,7 +36,7 @@ Error Budget → Allowable failure within that target
 
 ---
 
-# 3. Key Principles
+## 3. Key Principles
 
 ### Principle 1: SLIs Reflect User Experience
 
@@ -89,7 +89,7 @@ Engineering Decisions (Release / Stabilise)
 
 ---
 
-# 4. Real-World Examples
+## 4. Real-World Examples
 
 ### Example 1 — API Latency SLO
 
@@ -115,7 +115,7 @@ Engineering Decisions (Release / Stabilise)
 
 ---
 
-# 5. Case Study
+## 5. Case Study
 
 ### Scenario: A Billing API Experiences Latency Degradation
 
@@ -145,7 +145,7 @@ Users → LB → Billing API → Database
 
 ---
 
-# 7. Architecture / Workflow Diagrams
+## 7. Architecture / Workflow Diagrams
 
 ### Diagram 1 — SLI/SLO Flow
 
@@ -211,28 +211,28 @@ Compute → CPU/Memory saturation
 
 ---
 
-# 8. Best Practices
+## 8. Best Practices
 
-* **Define SLIs based on user impact, not internal metrics alone.**
+* **Define SLIs based on user impact, not internal metrics alone.
     * **Example:** Measure **page load time** (what the user feels) instead of just **server CPU usage** (an internal metric).
 
-* **Keep SLOs realistic, not overly strict.**
+* **Keep SLOs realistic, not overly strict.
     * **Example:** Start with a 99.9% ("three nines") availability target instead of an extremely difficult and expensive 99.999% ("five nines") target, unless it's truly critical.
 
-* **Use error budgets as a governance mechanism.**
+* **Use error budgets as a governance mechanism.
     * **Example:** If the error budget is used up for the month, automatically **pause new feature releases** to force the team to focus on stability and bug fixes.
 
-* **Review SLO compliance at least monthly.**
+* **Review SLO compliance at least monthly.
     * **Example:** Hold a regular meeting to ask, "Did we meet our 99.9% target last month? Why or why not?" and plan any necessary corrections.
 
-* **Align developers on reliability implications.**
+* **Align developers on reliability implications.
     * **Example:** When a developer is building a new feature, make sure they understand how it could **impact the error budget** and overall system performance.
 
-* **IT engineers should monitor saturation, resource pressure, and network behaviours.**
+* **IT engineers should monitor saturation, resource pressure, and network behaviours.
     * **Example:** An IT engineer should watch for signs that the **memory (RAM) is almost full** or the **network is getting congested**, *before* it causes an outage.
 ---
 
-# 9. Common Mistakes
+## 9. Common Mistakes
 
 * Selecting SLIs developers find easy rather than those users care about.
 * Setting overly aggressive SLOs without historical data.
@@ -242,7 +242,7 @@ Compute → CPU/Memory saturation
 
 ---
 
-# 10. Additional Notes
+## 10. Additional Notes
 
 * SLOs are not SLAs. SLAs involve financial penalties; SLOs are engineering tools.
 * Error budgets help balance velocity and reliability effectively.

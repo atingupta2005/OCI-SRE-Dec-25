@@ -1,13 +1,13 @@
-# **Day 2 – Hands-On: Creating Alarms & Notification Channels (Using Class Enrollment App VM)**
+
+## Hands-on Lab
 
 * Create an **alarm** for CPU usage on the Compute instance running the Class Enrollment App
 * Configure an **email notification channel** so alarms can send alerts
 
 This mirrors real SRE workflows where alerts detect unhealthy system behavior (e.g., CPU spikes from enrollment bursts).
 
----
 
-# **1. Objective of This Hands-On**
+## 1. Objective of This Hands-On
 
 By completing this exercise, students will:
 
@@ -19,17 +19,15 @@ By completing this exercise, students will:
 
 This prepares learners for SLO-based alerting and incident response in later sessions.
 
----
 
-# **2. Task 1 — Create an Alarm for CPU Usage**
+## 2. Task 1 — Create an Alarm for CPU Usage
 
 ## **Purpose:** Monitor CPU load of the Compute instance running the Class Enrollment app.
 
 This ensures you are alerted when the application becomes overloaded due to high student activity.
 
----
 
-## **Steps:**
+## Steps:
 
 1. Open the **Navigation Menu (☰)**.
 2. Go to **Observability & Management → Alarms**.
@@ -53,9 +51,8 @@ This ensures you are alerted when the application becomes overloaded due to high
 8. Scroll down and leave **Notifications** empty for now (we add the email channel next).
 9. Click **Create Alarm**.
 
----
 
-## **What You Should See:**
+## What You Should See:
 
 * Alarm appears in the list
 * Status: **`OK`** (normal)
@@ -63,19 +60,17 @@ This ensures you are alerted when the application becomes overloaded due to high
 
 Once CPU exceeds 70% for 1 minute, the alarm will enter **`FIRING`** state.
 
----
 
-# **3. Task 2 — Add an Email Notification Channel**
+## 3. Task 2 — Add an Email Notification Channel
 
 ## **Purpose:** Set up a path for alerts to reach you.
 
 Notifications in OCI use the **Notifications Service**, which relies on **Topics** and **Subscriptions**.
 
----
 
-## **Steps:**
+## Steps:
 
-### **A. Create a Topic**
+### A. Create a Topic
 
 1. Open **Navigation Menu → Application Integration → Notifications**.
 2. Click **Topics**.
@@ -85,9 +80,8 @@ Notifications in OCI use the **Notifications Service**, which relies on **Topics
    * `<student-id>-cpu-topic`
 5. Click **Create**.
 
----
 
-### **B. Add an Email Subscription**
+### B. Add an Email Subscription
 
 1. Open the topic you just created.
 2. Click **Create Subscription**.
@@ -100,9 +94,8 @@ Notifications in OCI use the **Notifications Service**, which relies on **Topics
 
 (If you don’t confirm, you will NOT receive alarm notifications.)
 
----
 
-### **C. Attach the Notification Topic to Your Alarm**
+### C. Attach the Notification Topic to Your Alarm
 
 1. Return to **Observability & Management → Alarms**.
 2. Click your alarm name: `<student-id>-cpu-alarm`.
@@ -112,9 +105,8 @@ Notifications in OCI use the **Notifications Service**, which relies on **Topics
    * `<student-id>-cpu-topic`
 5. Save changes.
 
----
 
-## **What You Should See:**
+## What You Should See:
 
 * Alarm now lists **1 Notification Channel**
 * Topic is active
@@ -124,9 +116,8 @@ Your alarm is now fully functional.
 
 If CPU crosses 70%, you will receive an email alert.
 
----
 
-# **4. Summary of the Hands-On**
+## 4. Summary of the Hands-On
 
 In this lab you learned how to:
 
@@ -137,15 +128,13 @@ In this lab you learned how to:
 
 This is the foundation for SRE alerting workflows.
 
----
 
-# **5. Solutions Key (Instructor Reference)**
+## 5. Solutions Key (Instructor Reference)
 
 Use this to verify student work.
 
----
 
-# **✔ Solution Key — Task 1: CPU Alarm**
+## ✔ Solution Key — Task 1: CPU Alarm
 
 ### Expected alarm settings:
 
@@ -162,9 +151,8 @@ Use this to verify student work.
 * Alarm status = **OK** initially
 * Query correctly displays in preview
 
----
 
-# **✔ Solution Key — Task 2: Email Notification Channel**
+## ✔ Solution Key — Task 2: Email Notification Channel
 
 ### Topic:
 
@@ -184,6 +172,5 @@ Use this to verify student work.
 
 * A test spike over 70% CPU triggers an email
 
----
 
-# **End of Hands-On Document**
+## End of Hands-On Document

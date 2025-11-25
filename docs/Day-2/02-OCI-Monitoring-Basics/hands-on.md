@@ -1,12 +1,12 @@
-# **Day 2 – Hands-On: OCI Monitoring Basics (Using Class Enrollment App)**
 
-## **Instructor-Optimized, Student-Friendly Document**
+## Hands-on Lab
+
+## Instructor-Optimized, Student-Friendly Document
 
 This hands-on activity focuses only on the practical elements of **OCI Monitoring**, using the **Compute instance running your Class‑Enrollment application**. Students will learn where metrics come from, how to view them, and how to understand namespaces and metric names.
 
----
 
-# **1. Objective of This Hands-On**
+## 1. Objective of This Hands-On
 
 By the end of this exercise, learners will:
 
@@ -18,13 +18,12 @@ By the end of this exercise, learners will:
 
 This activity connects directly to future topics—SLOs, alerting, dashboards, and incident response.
 
----
 
-# **2. Quick Overview Before the Hands-On**
+## 2. Quick Overview Before the Hands-On
 
 Students must understand three simple concepts:
 
-## **2.1 Monitoring Service Overview**
+## 2.1 Monitoring Service Overview
 
 OCI Monitoring collects time‑series metrics such as:
 
@@ -36,9 +35,8 @@ OCI Monitoring collects time‑series metrics such as:
 
 Metrics are organized and visualized using the **Metric Explorer**.
 
----
 
-## **2.2 Metric Namespaces**
+## 2.2 Metric Namespaces
 
 A *namespace* is a logical group of metrics.
 Examples:
@@ -49,9 +47,8 @@ Examples:
 
 Think of namespaces as “folders” that contain related metric names.
 
----
 
-## **2.3 Default vs Custom Metrics**
+## 2.3 Default vs Custom Metrics
 
 * **Default metrics:** automatically collected by OCI
 
@@ -66,17 +63,15 @@ Think of namespaces as “folders” that contain related metric names.
 
 For this lab, we only use **default metrics** from the Compute instance running the Class Enrollment app.
 
----
 
-# **3. Hands-On Task 1 — Enable Metrics for Compute Instance**
+## 3. Hands-On Task 1 — Enable Metrics for Compute Instance
 
-### **Purpose:** Ensure your Class Enrollment app’s VM is sending default compute metrics.
+### Purpose: Ensure your Class Enrollment app’s VM is sending default compute metrics.
 
 Metrics for Compute are enabled automatically **if the OCI Monitoring Agent is installed**. Most images like Oracle Linux include it by default.
 
----
 
-## **Steps:**
+## Steps:
 
 1. Open the **Navigation Menu (☰)**.
 2. Go to **Compute → Instances**.
@@ -85,9 +80,8 @@ Metrics for Compute are enabled automatically **if the OCI Monitoring Agent is i
 5. Check **Metrics**.
 6. Confirm that graphs for CPU, Network, or Disk are visible.
 
----
 
-## **What You Should See:**
+## What You Should See:
 
 * CPU Utilization graph
 * Memory Utilization graph (if supported)
@@ -96,9 +90,8 @@ Metrics for Compute are enabled automatically **if the OCI Monitoring Agent is i
 
 If metrics show data points, monitoring is correctly enabled.
 
----
 
-## **Why This Matters (SRE Context):**
+## Why This Matters (SRE Context):
 
 Compute metrics are the first signals SREs check during incidents. They help answer:
 
@@ -107,17 +100,15 @@ Compute metrics are the first signals SREs check during incidents. They help ans
 * Is network traffic spiking?
 * Is the underlying VM healthy?
 
----
 
-# **4. Hands-On Task 2 — Inspect Available Metric Names**
+## 4. Hands-On Task 2 — Inspect Available Metric Names
 
-### **Purpose:** Learn how to explore metric namespaces and names in OCI.
+### Purpose: Learn how to explore metric namespaces and names in OCI.
 
 This exercise helps understand how OCI organizes metrics.
 
----
 
-## **Steps:**
+## Steps:
 
 1. Open **Navigation Menu → Observability & Management → Monitoring**.
 2. Click **Metric Explorer**.
@@ -135,7 +126,6 @@ You should see metrics like:
 * `DiskBytesRead`
 * `DiskBytesWritten`
 
----
 
 ## **Student Activity:** List the metric names you find.
 
@@ -147,9 +137,8 @@ Use this table:
 |             |                          |
 |             |                          |
 
----
 
-# **65. Summary of the Hands-On**
+## 65. Summary of the Hands-On
 
 Today you:
 
@@ -160,15 +149,13 @@ Today you:
 
 These basics are essential for real-time SRE work.
 
----
 
-# **6. Solutions Key (Instructor Reference)**
+## 6. Solutions Key (Instructor Reference)
 
 This section provides sample answers so students can self-check after completing the activity.
 
----
 
-# **Solution Key — Task 1: Enable Metrics on Compute Instance**
+## Solution Key — Task 1: Enable Metrics on Compute Instance
 
 ### ✔ What students should observe:
 
@@ -191,9 +178,8 @@ If graphs show *“No Data”*, students should:
 2. Wait 2–5 minutes (metrics are emitted at intervals).
 3. Confirm they selected the correct **compartment**.
 
----
 
-# **Solution Key — Task 2: Inspect Available Metric Names**
+## Solution Key — Task 2: Inspect Available Metric Names
 
 ### ✔ Expected Namespace:
 
@@ -226,4 +212,3 @@ oci_computeagent
 
 Students should recognize that these default metrics form the baseline for diagnosing reliability issues.
 
----

@@ -8,7 +8,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 Automation is one of the most effective ways to eliminate toil. OCI **Resource Manager** is Oracle’s managed Terraform-based automation service used to provision, update, and tear down infrastructure in a consistent and repeatable manner.
 
@@ -24,7 +24,7 @@ With Resource Manager, both IT engineers and developers can treat infrastructure
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### IT Engineers
 
@@ -47,7 +47,7 @@ Manual Operations → Terraform Templates → Resource Manager → Automated Inf
 
 ---
 
-# 3. Key Concepts
+## 3. Key Concepts
 
 ## 3.1 Infrastructure as Code (IaC)
 
@@ -83,7 +83,7 @@ Resource Manager natively supports Terraform:
 
 ---
 
-# 4. Real-World Examples
+## 4. Real-World Examples
 
 ### Example 1 — Provisioning Standardized Environments
 
@@ -99,7 +99,7 @@ Developers use Resource Manager to deploy application VMs, OKE clusters, or serv
 
 ---
 
-# 5. Case Study
+## 5. Case Study
 
 ### Scenario: Manual Provisioning Causing Toil
 
@@ -130,7 +130,7 @@ An engineering team manually provisions:
 
 ---
 
-# 6. Hands-On Exercise (Summary Only)
+## 6. Hands-On Exercise (Summary Only)
 
 A separate hands-on lab will follow. It will include:
 
@@ -142,7 +142,7 @@ A separate hands-on lab will follow. It will include:
 
 ---
 
-# 7. Architecture / Workflow Diagrams
+## 7. Architecture / Workflow Diagrams
 
 ### Diagram 1 — Resource Manager Lifecycle
 
@@ -168,7 +168,7 @@ Stack
 
 ---
 
-# 8. Best Practices
+## 8. Best Practices
 
 * Store Terraform templates in version control.
 * Use modules for reusable patterns.
@@ -178,7 +178,7 @@ Stack
 
 ---
 
-# 9. Common Mistakes
+## 9. Common Mistakes
 
 * Hardcoding values in templates.
 * Ignoring drift detection warnings.
@@ -187,7 +187,7 @@ Stack
 
 ---
 
-# 10. Checklist
+## 10. Checklist
 
 * Understand stack structure.
 * Know how to upload Terraform configuration.
@@ -197,7 +197,7 @@ Stack
 
 ---
 
-# 11. Additional Notes
+## 11. Additional Notes
 
 * This subtopic prepares you for the Day 3 Subtopic 4 Hands-On lab.
 * Terraform with Resource Manager becomes essential for Day 5’s capstone project.

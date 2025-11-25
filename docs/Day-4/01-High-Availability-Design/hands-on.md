@@ -1,12 +1,12 @@
-# **Day 4 – Hands-On: High Availability Design (Using Class Enrollment App)**
+
+# Hands-on Lab
 
 ## **Student-Friendly Document with Complete Solution Key**
 
 This hands-on activity teaches students how to design and verify **High Availability (HA)** using OCI Load Balancer and multiple backend instance pools. Students deploy the **Class Enrollment Web App** behind a Load Balancer and validate traffic distribution.
 
----
 
-# **1. Background Concepts (Clear, Practical Explanations)**
+## **1. Background Concepts (Clear, Practical Explanations)**
 
 ## **1.1 Fault Domains & Redundancy**
 
@@ -19,7 +19,6 @@ High availability requires:
 
 In this lab, you will deploy **two compute instances** in different fault domains to host identical versions of the Class Enrollment App.
 
----
 
 ## **1.2 Load Balancing Patterns**
 
@@ -33,7 +32,6 @@ Recommended pattern:
 
 * **Public Load Balancer → Backend Set → Instance Pool with multiple instances**
 
----
 
 ## **1.3 Stateless Design Principles**
 
@@ -48,13 +46,11 @@ The Class Enrollment App (Flask + React + SQLite or DB) can be treated as statel
 * Sessions are stored in cookies or DB
 * Compute node does not store critical state
 
----
 
-# **2. Hands-On Task 1 — Deploy App Behind OCI Load Balancer**
+## **2. Hands-On Task 1 — Deploy App Behind OCI Load Balancer**
 
 ## **Purpose:** Place your application behind a public Load Balancer for HA.
 
----
 
 ## **Steps:**
 
@@ -71,7 +67,6 @@ The Class Enrollment App (Flask + React + SQLite or DB) can be treated as statel
    * Create or select a **public subnet**
 5. Click **Next**.
 
----
 
 ## **Frontend Listener Configuration:**
 
@@ -79,15 +74,13 @@ The Class Enrollment App (Flask + React + SQLite or DB) can be treated as statel
 * **Protocol:** HTTP
 * **Port:** `80`
 
----
 
 ## **Expected Result:**
 
 A public load balancer is created and ready for backend attachment.
 
----
 
-# **3. Hands-On Task 2 — Configure Two Backend Instance Pools**
+## **3. Hands-On Task 2 — Configure Two Backend Instance Pools**
 
 ## **Purpose:** Provide redundancy through multiple application servers.
 
@@ -97,7 +90,6 @@ A public load balancer is created and ready for backend attachment.
 * Deploy app code on both
 * Register them with the Load Balancer backend set
 
----
 
 ## **Steps:**
 
@@ -115,7 +107,6 @@ Used by both instance pools.
    * `<student-id>-app-config`
 5. Save configuration.
 
----
 
 ### **B. Create Two Instance Pools**
 
@@ -136,7 +127,6 @@ Repeat with:
 * Name: `<student-id>-pool-b`
 * Fault Domain: **FD 2**
 
----
 
 ### **C. Register Pools as Backends**
 
@@ -152,19 +142,16 @@ Repeat with:
 7. Port: `5000` (Flask default)
 8. Save.
 
----
 
 ## **Expected Result:**
 
 The load balancer shows **two healthy backends**, one in each fault domain.
 
----
 
-# **4. Hands-On Task 3 — Verify Traffic Distribution**
+## **4. Hands-On Task 3 — Verify Traffic Distribution**
 
 ## **Purpose:** Confirm that traffic load is balanced across both app servers.
 
----
 
 ## **Steps:**
 
@@ -193,15 +180,13 @@ The load balancer shows **two healthy backends**, one in each fault domain.
    * `instance-pool-a-ID`
    * `instance-pool-b-ID`
 
----
 
 ## **Expected Result:**
 
 Traffic alternates → confirming HA and load balancing functionality.
 
----
 
-# **5. Summary of the Hands-On**
+## **5. Summary of the Hands-On**
 
 In this exercise, you:
 
@@ -212,15 +197,13 @@ In this exercise, you:
 
 These steps form the foundation of **High Availability architecture**.
 
----
 
-# **6. Solutions Key (Instructor Reference)**
+## **6. Solutions Key (Instructor Reference)**
 
 Below is a validated reference solution.
 
----
 
-# **✔ Solution Key — Load Balancer**
+## **✔ Solution Key — Load Balancer**
 
 ### Expected:
 
@@ -230,9 +213,8 @@ Below is a validated reference solution.
 
 LB shows **Active** state.
 
----
 
-# **✔ Solution Key — Instance Pools**
+## **✔ Solution Key — Instance Pools**
 
 ### Expected:
 
@@ -243,9 +225,8 @@ Two pools:
 
 Each contains 1 instance created from the instance configuration.
 
----
 
-# **✔ Solution Key — Backend Set**
+## **✔ Solution Key — Backend Set**
 
 ### Expected:
 
@@ -255,9 +236,8 @@ Backend Set: `app-backend`
 * Two backends attached
 * Both marked **Healthy**
 
----
 
-# **✔ Solution Key — Traffic Validation**
+## **✔ Solution Key — Traffic Validation**
 
 When refreshing:
 
@@ -266,6 +246,5 @@ When refreshing:
 
 If all responses come from one instance → health check misconfiguration.
 
----
 
-# **End of Hands-On Document**
+## **End of Hands-On Document**

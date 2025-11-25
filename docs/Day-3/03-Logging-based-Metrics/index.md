@@ -8,7 +8,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 Logging-based metrics allow engineers to convert log events into numerical metrics for monitoring, alerting, and SLO evaluation. They are essential when:
 
@@ -28,7 +28,7 @@ Logging-based metrics bridge the gap between logs and metrics by producing numer
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### IT Engineers
 
@@ -50,7 +50,7 @@ Logs → Extract Patterns → Convert to Metric → Dashboards / Alerts / SLO Mo
 
 ---
 
-# 3. Key Concepts
+## 3. Key Concepts
 
 ## 3.1 Log Sources
 
@@ -91,7 +91,7 @@ After constructing a query, you create a metric from it:
 
 ---
 
-# 4. Real-World Examples
+## 4. Real-World Examples
 
 ### Example 1 — API Error Count
 
@@ -123,7 +123,7 @@ Metric extracted to count warnings → alarm triggers before outage.
 
 ---
 
-# 5. Case Study
+## 5. Case Study
 
 ### Scenario: Error Spikes Causing SLO Violations
 
@@ -148,7 +148,7 @@ filter logLevel = "ERROR" and message contains "checkout_failed"
 
 ---
 
-# 6. Hands-On Exercise (Summary Only)
+## 6. Hands-On Exercise (Summary Only)
 
 A full hands-on lab will follow separately.
 It will include:
@@ -160,7 +160,7 @@ It will include:
 
 ---
 
-# 7. Architecture / Workflow Diagrams
+## 7. Architecture / Workflow Diagrams
 
 ### Diagram 1 — Log to Metric Pipeline
 
@@ -185,7 +185,7 @@ Raw Logs → Filter → Parse → Stats → Metric Output
 
 ---
 
-# 8. Best Practices
+## 8. Best Practices
 
 * Use structured JSON logs where possible,
 * Keep log-based queries efficient,
@@ -195,7 +195,7 @@ Raw Logs → Filter → Parse → Stats → Metric Output
 
 ---
 
-# 9. Common Mistakes
+## 9. Common Mistakes
 
 * Creating overly complex log queries,
 * Parsing unstructured logs unnecessarily,
@@ -204,7 +204,7 @@ Raw Logs → Filter → Parse → Stats → Metric Output
 
 ---
 
-# 10. Checklist
+## 10. Checklist
 
 * Identify log patterns needing metric extraction,
 * Write and test LQL queries,
@@ -214,7 +214,7 @@ Raw Logs → Filter → Parse → Stats → Metric Output
 
 ---
 
-# 11. Additional Notes
+## 11. Additional Notes
 
 * Logging-based metrics are essential for monitoring application-level behaviours.
 * They complement default OCI metrics and improve SLO visibility.

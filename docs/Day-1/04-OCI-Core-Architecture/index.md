@@ -4,7 +4,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 OCI (Oracle Cloud Infrastructure) core architecture provides the foundational building blocks required to deploy reliable, secure, and scalable applications. For IT engineers and developers, understanding OCI’s architectural components is essential for designing applications that meet SRE-driven reliability targets such as availability, latency, and resilience.
 
@@ -19,7 +19,7 @@ This subtopic focuses on the most important architectural elements relevant for 
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### IT Engineers
 
@@ -41,7 +41,7 @@ Application Code → Runs on Compute → Connected via VCN → Observed via Logg
 
 ---
 
-# 3. Key Principles
+## 3. Key Principles
 
 ### Principle 1: Compartmentalisation
 
@@ -70,7 +70,7 @@ Logs + metrics + alarms allow SRE to detect degradation early.
 
 ---
 
-# 4. Real-World Examples
+## 4. Real-World Examples
 
 ### Example 1 — Latency Caused by Cross-AD Traffic
 
@@ -90,7 +90,7 @@ SRE identifies routing issue using VCN flow logs.
 
 ---
 
-# 5. Case Study
+## 5. Case Study
 
 ### Scenario: Application Outage Due to Missing HA Configuration
 
@@ -122,7 +122,7 @@ Users → LB → App VM (Single AD) → Database
 
 ---
 
-# 6. Architecture / Workflow Diagrams
+## 6. Architecture / Workflow Diagrams
 
 ### Diagram 1 — OCI Core Components
 
@@ -181,7 +181,7 @@ Database → Metrics → Monitoring
 
 ---
 
-# 7. Best Practices
+## 7. Best Practices
 
 * Always deploy across multiple ADs/Fault Domains.
 * Use private subnets for application tier.
@@ -192,7 +192,7 @@ Database → Metrics → Monitoring
 
 ---
 
-# 8. Common Mistakes
+## 8. Common Mistakes
 
 * Placing all compute resources in a single AD.
 * Missing NAT gateway in private subnet.
@@ -201,7 +201,7 @@ Database → Metrics → Monitoring
 
 ---
 
-# 9. Additional Notes
+## 9. Additional Notes
 
 * OCI’s architecture offers deeper control compared to many clouds.
 * SRE depends heavily on these core compo

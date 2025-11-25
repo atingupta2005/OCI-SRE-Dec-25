@@ -1,8 +1,9 @@
-# **Day 1 – SRE vs DevOps vs Platform Engineering**
 
-## **Hands-On Exercise: Role Comparison (Structured, Teaching-Friendly Version)**
+## Hands-on Lab
 
-# **1. Objective of This Exercise**
+## Hands-On Exercise: Role Comparison (Structured, Teaching-Friendly Version)
+
+## 1. Objective of This Exercise
 
 By the end of this session, learners will:
 
@@ -12,11 +13,10 @@ By the end of this session, learners will:
 
 This exercise is intentionally simple but conceptually powerful.
 
----
 
-# **2. Step 1: Prepare a Comparison Table**
+## 2. Step 1: Prepare a Comparison Table
 
-### **Purpose:** Establish a structured way to compare the three roles.
+### Purpose: Establish a structured way to compare the three roles.
 
 Students should draw a simple three-column table like this:
 
@@ -28,17 +28,15 @@ Students should draw a simple three-column table like this:
 
 You will fill this table in the next step.
 
----
 
-# **3. Step 2: Populate the Table with Example Tasks**
+## 3. Step 2: Populate the Table with Example Tasks
 
-### **Purpose:** See how each role contributes differently to modern engineering teams.
+### Purpose: See how each role contributes differently to modern engineering teams.
 
 Below are curated example tasks. Students should copy them into the table under the appropriate columns.
 
----
 
-## **SRE Responsibilities**
+## SRE Responsibilities
 
 Below are core SRE tasks along with explanations for **why each task fits the role**. Additional tasks are included to give learners a broader understanding.
 
@@ -72,9 +70,8 @@ Below are core SRE tasks along with explanations for **why each task fits the ro
 
 These responsibilities emphasize **availability, performance, and operational excellence**.
 
----
 
-## **DevOps Responsibilities**
+## DevOps Responsibilities
 
 DevOps focuses on improving software delivery speed, automation, and consistency. Below are tasks with explanations.
 
@@ -107,9 +104,8 @@ DevOps focuses on improving software delivery speed, automation, and consistency
 
 These responsibilities emphasize **tooling, deployment automation, and developer productivity**.
 
----
 
-## **Platform Engineering Responsibilities**
+## Platform Engineering Responsibilities
 
 Platform Engineering builds the internal platforms that development, DevOps, and SRE rely on.
 
@@ -145,9 +141,8 @@ Platform engineers build the internal platforms that DevOps and SRE workflows de
 
 These responsibilities emphasize **platform creation, abstraction, and enabling teams at scale**.
 
----
 
-# **4. How Students Should Use the Table**
+## 4. How Students Should Use the Table
 
 The final filled table will help learners:
 
@@ -162,9 +157,8 @@ This table becomes a reference point in later modules on:
 * SLO implementation
 * platform reliability
 
----
 
-# **5. Key Notes for Learners**
+## 5. Key Notes for Learners
 
 * SRE, DevOps, and Platform Engineering are **complementary**, not competing roles.
 * Each role has a different focus area, but all three aim to improve engineering productivity and system reliability.

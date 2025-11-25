@@ -8,7 +8,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 OCI Monitoring is the foundational service that collects, stores, and visualizes **metrics** from OCI resources and custom applications. For SRE, IT engineers, and developers, Monitoring provides the raw data used for:
 
@@ -29,7 +29,7 @@ This subtopic focuses on how metrics are organized, where they come from, and ho
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### IT Engineers
 
@@ -51,7 +51,7 @@ Resource / App → Emits Metrics → OCI Monitoring → SLIs / Alerts / Dashboar
 
 ---
 
-# 3. Key Concepts
+## 3. Key Concepts
 
 ## 3.1 Metric Namespace
 
@@ -141,7 +141,7 @@ Custom metrics are used for business logic, feature-level behaviour, or applicat
 
 ---
 
-# 4. Real-World Examples
+## 4. Real-World Examples
 
 ### Example 1 — CPU Saturation on Compute
 
@@ -163,7 +163,7 @@ Used to track reliability of external dependency.
 
 ---
 
-# 5. Case Study
+## 5. Case Study
 
 ### Scenario: Slowdown Reported in Production
 
@@ -184,7 +184,7 @@ Users report slow responses during peak traffic.
 
 ---
 
-# 6. Hands-On Exercise (Summary Only)
+## 6. Hands-On Exercise (Summary Only)
 
 A complete hands-on lab will follow after this theory document.
 The lab will include:
@@ -196,7 +196,7 @@ The lab will include:
 
 ---
 
-# 7. Architecture / Workflow Diagrams
+## 7. Architecture / Workflow Diagrams
 
 ### Diagram 1 — Metric Flow
 
@@ -227,7 +227,7 @@ Dimension: backendSetName = app-backend
 
 ---
 
-# 8. Best Practices
+## 8. Best Practices
 
 * Use percentiles (p95/p99) for latency.
 * Always tag custom metrics consistently.
@@ -237,7 +237,7 @@ Dimension: backendSetName = app-backend
 
 ---
 
-# 9. Common Mistakes
+## 9. Common Mistakes
 
 * Using average latency instead of percentiles.
 * Not enabling Cloud Agent → missing metrics.
@@ -246,7 +246,7 @@ Dimension: backendSetName = app-backend
 
 ---
 
-# 10. Checklist
+## 10. Checklist
 
 * Understand metric namespaces.
 * Know metric names relevant to your service.
@@ -256,7 +256,7 @@ Dimension: backendSetName = app-backend
 
 ---
 
-# 11. Additional Notes
+## 11. Additional Notes
 
 * OCI Monitoring integrates with Notifications for alerting.
 * Custom metrics allow very detailed SLI tracking.

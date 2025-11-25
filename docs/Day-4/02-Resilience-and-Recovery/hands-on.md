@@ -1,4 +1,5 @@
-# **Day 4 – Hands-On: Resilience & Recovery (Using Class Enrollment App Environment)**
+
+# Hands-on Lab
 
 ## **Student-Friendly Document with Complete Solution Key**
 
@@ -9,9 +10,8 @@ This hands-on activity focuses on two core resilience practices:
 
 These skills are foundational for building secure, fault‑tolerant, and recoverable systems.
 
----
 
-# **1. Background Concepts (Short & Practical)**
+## **1. Background Concepts (Short & Practical)**
 
 ## **1.1 Backups & Snapshots (Why They Matter)**
 
@@ -26,7 +26,6 @@ SREs use them for:
 * Rollbacks
 * Protection against corruption & accidental deletion
 
----
 
 ## **1.2 Secret Rotation & Secure Configs**
 
@@ -40,13 +39,11 @@ Secrets must be:
 
 This lab walks you through securely storing and retrieving secrets.
 
----
 
-# **2. Hands-On Task 1 — Store Secrets in OCI Vault**
+## **2. Hands-On Task 1 — Store Secrets in OCI Vault**
 
 ## **Purpose:** Store an application DB password or API key securely.
 
----
 
 ## **Steps:**
 
@@ -61,7 +58,6 @@ This lab walks you through securely storing and retrieving secrets.
    * **Compartment:** your training compartment
 4. Click **Create Vault**.
 
----
 
 ### **B. Create a Master Key**
 
@@ -73,7 +69,6 @@ This lab walks you through securely storing and retrieving secrets.
    * **Protection Mode:** "HSM" or "Software" (either fine for training)
 4. Click **Create Key**.
 
----
 
 ### **C. Create the Secret**
 
@@ -91,21 +86,18 @@ This lab walks you through securely storing and retrieving secrets.
    ```
 5. Click **Create Secret**.
 
----
 
 ## **Expected Result:**
 
 A new secret created in the Vault with encrypted storage.
 
----
 
-# **3. Hands-On Task 2 — Retrieve a Secret from a Compute Instance**
+## **3. Hands-On Task 2 — Retrieve a Secret from a Compute Instance**
 
 ## **Purpose:** Retrieve secret programmatically using instance principal.
 
 This is how applications securely access secrets at runtime.
 
----
 
 ## **Prerequisites**
 
@@ -114,7 +106,6 @@ Your instance must:
 * Have **dynamic group** membership
 * Have an IAM policy allowing secret access
 
----
 
 ### **A. Create Dynamic Group for Your Instance**
 
@@ -142,7 +133,6 @@ Your instance must:
      ```
 4. Save.
 
----
 
 ### **C. Retrieve Secret from Instance (Hands-On Command)**
 
@@ -164,7 +154,6 @@ Retrieve the secret value:
 oci secrets secret-bundle get --secret-id <secret-ocid> --query "data."secret-bundle-content".content" --raw-output | base64 --decode
 ```
 
----
 
 ## **Expected Result:**
 
@@ -178,9 +167,8 @@ SuperSecretP@ss123
 
 This confirms **secure retrieval via OCI Vault**, not from environment variables or config files.
 
----
 
-# **4. Summary of This Hands-On**
+## **4. Summary of This Hands-On**
 
 You successfully:
 
@@ -192,13 +180,11 @@ You successfully:
 
 This workflow is the foundation of secure configuration management.
 
----
 
-# **5. Solutions Key (Instructor Reference)**
+## **5. Solutions Key (Instructor Reference)**
 
 Use this key to confirm student outputs.
 
----
 
 ## **✔ Solution Key — Vault Setup**
 
@@ -209,7 +195,6 @@ Use this key to confirm student outputs.
 * Secret Name: `<student-id>-db-password>`
 * Secret stored successfully
 
----
 
 ## **✔ Solution Key — Dynamic Group Rules**
 
@@ -221,7 +206,6 @@ ALL {instance.id = 'ocid1.instance.oc1..xxxxx'}
 
 Matching student’s instance OCID.
 
----
 
 ## **✔ Solution Key — IAM Policy**
 
@@ -233,7 +217,6 @@ Allow dynamic-group <student-id>-dg to read secret-bundles in compartment <YOUR-
 
 Policy must be in correct compartment.
 
----
 
 ## **✔ Solution Key — Secret Retrieval**
 
@@ -243,4 +226,3 @@ Expected output:
 * Base64‑decoded secret matches stored value
 * No plaintext secret stored on VM
 
----

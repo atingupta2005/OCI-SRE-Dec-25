@@ -8,7 +8,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 Designing effective **Service Level Indicators (SLIs)** and **Service Level Objectives (SLOs)** is foundational to measurable reliability engineering. While Day 1 introduced the definitions and concepts, Day 2 focuses on the **engineering process** of designing practical, meaningful, and enforceable SLIs and SLOs.
 
@@ -17,7 +17,7 @@ This involves:
 * Understanding user journeys
 * Identifying critical request paths
 * Mapping request paths to measurable signals
-* Deciding which signals represent **true customer experience**
+* Deciding which signals represent **true customer experience
 * Designing realistic and enforceable reliability targets
 
 This process ensures that reliability goals are:
@@ -29,7 +29,7 @@ This process ensures that reliability goals are:
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### IT Engineers
 
@@ -53,7 +53,7 @@ Infrastructure & code must produce measurable signals
 
 ---
 
-# 3. Key Principles
+## 3. Key Principles
 
 ### Principle 1: SLIs Should Measure User Experience
 
@@ -93,7 +93,7 @@ Error budgets guide release decisions.
 
 ---
 
-# 4. Real-World Examples
+## 4. Real-World Examples
 
 ### Example 1 — API Latency SLI for Billing Service
 
@@ -115,7 +115,7 @@ Error budgets guide release decisions.
 
 ---
 
-# 5. Case Study
+## 5. Case Study
 
 ### Scenario: Designing SLIs for an E‑Commerce API
 
@@ -127,9 +127,9 @@ User → Load Balancer → API → Database → External Payment Service
 
 ### Critical SLIs
 
-1. **Checkout API success rate**
-2. **Checkout P99 latency**
-3. **Payment gateway call success rate**
+1. **Checkout API success rate
+2. **Checkout P99 latency
+3. **Payment gateway call success rate
 
 ### SLO Targets
 
@@ -159,7 +159,7 @@ If 2M monthly requests → 10,000 failures allowed
 
 ---
 
-# 6. Hands-On Exercise (Summary Only)
+## 6. Hands-On Exercise (Summary Only)
 
 The full hands-on lab will be provided separately. It will include:
 
@@ -171,7 +171,7 @@ The full hands-on lab will be provided separately. It will include:
 
 ---
 
-# 7. Architecture / Workflow Diagrams
+## 7. Architecture / Workflow Diagrams
 
 ### Diagram 1 — SLI/SLO Design Flow
 
@@ -195,7 +195,7 @@ Application → LB → Metrics → Monitoring → SLO Evaluation
 
 ---
 
-# 8. Best Practices
+## 8. Best Practices
 
 * Keep SLIs simple but meaningful.
 * Validate SLI availability in Monitoring before adopting.
@@ -205,7 +205,7 @@ Application → LB → Metrics → Monitoring → SLO Evaluation
 
 ---
 
-# 9. Common Mistakes
+## 9. Common Mistakes
 
 * Using too many SLIs.
 * Confusing internal metrics with user-facing metrics.
@@ -215,7 +215,7 @@ Application → LB → Metrics → Monitoring → SLO Evaluation
 
 ---
 
-# 10. Checklist
+## 10. Checklist
 
 * Understand how to identify user-facing SLIs.
 * Know how to derive SLO targets.
@@ -225,7 +225,7 @@ Application → LB → Metrics → Monitoring → SLO Evaluation
 
 ---
 
-# 11. Additional Notes
+## 11. Additional Notes
 
 * SLO and error budget design becomes easier with observability maturity.
 * OCI provides built-in metrics that simplify SLI definition.

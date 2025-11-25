@@ -4,7 +4,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 Site Reliability Engineering (SRE) is an engineering discipline focused on ensuring that systems run reliably, predictably, and at scale. It brings together principles from software engineering and infrastructure operations to remove uncertainty from production environments.
 
@@ -28,7 +28,7 @@ Software Engineering + Systems Engineering + Operations Automation
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### For IT Engineers
 
@@ -66,7 +66,7 @@ SRE: Ensure the entire system meets reliability targets
 
 ---
 
-# 3. Key Principles
+## 3. Key Principles
 
 ### Reliability Must Be Measured
 
@@ -104,7 +104,7 @@ Learning from incidents without individual blame.
 
 ---
 
-# 4. Real-World Examples
+## 4. Real-World Examples
 
 ### Example 1 — API Latency Spikes
 
@@ -133,7 +133,7 @@ SRE Actions:
 * Implement monitoring and alerts.
 
 
-# 4. Additional Notes
+## 4. Additional Notes
 
 * SRE becomes most effective when integrated early in design and development cycles.
 * IT engineers and developers benefit significantly from adopting SRE thinking.

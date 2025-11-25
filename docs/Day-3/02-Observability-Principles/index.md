@@ -8,7 +8,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 Observability is the ability to understand the internal state of a system **based on the data it produces**, especially during failures.
 It goes beyond traditional monitoring by enabling engineers to:
@@ -28,7 +28,7 @@ While monitoring answers “is the system working?”, observability answers “
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### IT Engineers
 
@@ -54,7 +54,7 @@ Together → Full Observability.
 
 ---
 
-# 3. Observability vs Monitoring
+## 3. Observability vs Monitoring
 
 | Aspect   | Monitoring                | Observability             |
 | -------- | ------------------------- | ------------------------- |
@@ -70,7 +70,7 @@ Together → Full Observability.
 
 ---
 
-# 4. The Three Pillars in Detail
+## 4. The Three Pillars in Detail
 
 ## 4.1 Metrics
 
@@ -124,7 +124,7 @@ Traces reveal:
 
 ---
 
-# 5. Real-World Examples
+## 5. Real-World Examples
 
 ### Example 1 — Slow API Response
 
@@ -146,7 +146,7 @@ Traces reveal:
 
 ---
 
-# 6. Case Study
+## 6. Case Study
 
 ### Scenario: Checkout API slowdowns
 
@@ -174,7 +174,7 @@ P99 latency > defined SLO.
 
 ---
 
-# 7. Hands-On Exercise (Summary Only)
+## 7. Hands-On Exercise (Summary Only)
 
 A complete lab will follow separately. It will include:
 
@@ -185,7 +185,7 @@ A complete lab will follow separately. It will include:
 
 ---
 
-# 8. Architecture / Workflow Diagrams
+## 8. Architecture / Workflow Diagrams
 
 ### Diagram 1 — Observability Flow
 
@@ -216,7 +216,7 @@ Symptoms → Signals → Correlation → Cause → Remediation
 
 ---
 
-# 9. Best Practices
+## 9. Best Practices
 
 * Emit structured JSON logs.
 * Use consistent tagging across metrics and logs.
@@ -226,7 +226,7 @@ Symptoms → Signals → Correlation → Cause → Remediation
 
 ---
 
-# 10. Common Mistakes
+## 10. Common Mistakes
 
 * Only relying on metrics without logs.
 * Not enabling detailed logs for applications.
@@ -235,7 +235,7 @@ Symptoms → Signals → Correlation → Cause → Remediation
 
 ---
 
-# 11. Checklist
+## 11. Checklist
 
 * Understand the 3 pillars.
 * Know when to use metrics vs logs vs traces.
@@ -244,7 +244,7 @@ Symptoms → Signals → Correlation → Cause → Remediation
 
 ---
 
-# 12. Additional Notes
+## 12. Additional Notes
 
 * Observability investments pay off during high-severity incidents.
 * This subtopic prepares you for logging-based metrics (Subtopic 3).

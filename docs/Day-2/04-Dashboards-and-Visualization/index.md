@@ -8,7 +8,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 OCI Dashboards provide a unified, visual workspace where engineers can monitor system health, track SLO performance, and observe real‑time infrastructure signals. Dashboards aggregate multiple metric charts, alarm widgets, logs, and custom metric visualizations into a single operational view.
 
@@ -29,7 +29,7 @@ This subtopic focuses on creating meaningful dashboards that highlight reliabili
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### IT Engineers
 
@@ -51,7 +51,7 @@ Metrics + Logs + Alarms → SLO‑Aligned Dashboards → Decision Making
 
 ---
 
-# 3. Key Concepts
+## 3. Key Concepts
 
 ## 3.1 Dashboard Types
 
@@ -85,7 +85,7 @@ SRE‑aligned dashboards should include:
 
 ---
 
-# 4. Real‑World Examples
+## 4. Real‑World Examples
 
 ### Example 1 — API Latency Dashboard
 
@@ -102,7 +102,7 @@ SRE‑aligned dashboards should include:
 
 ---
 
-# 5. Case Study
+## 5. Case Study
 
 ### Scenario: SLO Dashboard for Checkout API
 
@@ -126,7 +126,7 @@ A service‑level dashboard shows:
 
 ---
 
-# 6. Hands‑On Exercise (Summary Only)
+## 6. Hands‑On Exercise (Summary Only)
 
 A detailed lab will be created separately.
 It will include:
@@ -137,7 +137,7 @@ It will include:
 
 ---
 
-# 7. Architecture / Workflow Diagrams
+## 7. Architecture / Workflow Diagrams
 
 ### Diagram 1 — Dashboard as a Reliability View
 
@@ -167,7 +167,7 @@ SLI Metrics → SLO Threshold Lines → Visual Comparison
 
 ---
 
-# 8. Best Practices
+## 8. Best Practices
 
 * Use p95/p99 for latency‑based panels.
 * Add alarm widgets for quick incident triage.
@@ -177,7 +177,7 @@ SLI Metrics → SLO Threshold Lines → Visual Comparison
 
 ---
 
-# 9. Common Mistakes
+## 9. Common Mistakes
 
 * Too many panels creating noise.
 * Using average latency instead of percentiles.
@@ -187,7 +187,7 @@ SLI Metrics → SLO Threshold Lines → Visual Comparison
 
 ---
 
-# 10. Checklist
+## 10. Checklist
 
 * Identify key SLI metrics.
 * Add percentile‑based latency panels.
@@ -197,6 +197,6 @@ SLI Metrics → SLO Threshold Lines → Visual Comparison
 
 ---
 
-# 11. Additional Notes
+## 11. Additional Notes
 
 * Dashboards form the visual foundation for Day 4’s high‑availability validation and Day 5’s operational excellence exercises.

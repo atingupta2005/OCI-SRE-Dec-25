@@ -1,6 +1,7 @@
-# **Day 3 – Hands-On: Automation with Resource Manager (Terraform on OCI)**
 
-## **Student-Friendly Document with Complete Solution Key**
+## Hands-on Lab
+
+## Student-Friendly Document with Complete Solution Key
 
 This hands-on teaches students how to automate infrastructure deployment using **OCI Resource Manager**, Oracle’s managed Terraform service. You will:
 
@@ -10,11 +11,10 @@ This hands-on teaches students how to automate infrastructure deployment using *
 
 This lab prepares you for repeatable, reliable, and low-toil infrastructure management.
 
----
 
-# **1. Background Concepts (Short & Practical)**
+## 1. Background Concepts (Short & Practical)
 
-## **1.1 What Is Resource Manager?**
+## 1.1 What Is Resource Manager?
 
 Resource Manager is OCI’s managed Terraform service. It allows you to:
 
@@ -23,9 +23,8 @@ Resource Manager is OCI’s managed Terraform service. It allows you to:
 * Maintain auditable state files securely
 * Automate deployments with version control or object storage templates
 
----
 
-## **1.2 Why Terraform for SRE?**
+## 1.2 Why Terraform for SRE?
 
 Terraform helps SREs ensure:
 
@@ -36,9 +35,8 @@ Terraform helps SREs ensure:
 
 This reduces toil and eliminates human error.
 
----
 
-## **1.3 What You Will Deploy in This Hands-On**
+## 1.3 What You Will Deploy in This Hands-On
 
 A simple Terraform template that provisions:
 
@@ -63,15 +61,13 @@ resource "oci_core_vcn" "training_vcn" {
 }
 ```
 
----
 
-# **2. Hands-On Task 1 — Upload the Terraform Template**
+## 2. Hands-On Task 1 — Upload the Terraform Template
 
 ## **Purpose:** Load your Terraform configuration into Resource Manager.
 
----
 
-## **Steps:**
+## Steps:
 
 1. Open **Navigation Menu (☰) → Developer Services → Resource Manager**.
 2. Click **Stacks**.
@@ -86,21 +82,18 @@ resource "oci_core_vcn" "training_vcn" {
 
 If your template has variables, the form will prompt you to fill them in.
 
----
 
-## **Expected Output:**
+## Expected Output:
 
 Your stack is created and shows a **Terraform configuration summary**.
 
----
 
-# **3. Hands-On Task 2 — Create the Resource Manager Stack**
+## 3. Hands-On Task 2 — Create the Resource Manager Stack
 
 ## **Purpose:** Configure and prepare the stack for deployment.
 
----
 
-## **Steps:**
+## Steps:
 
 1. After uploading, click **Create**.
 2. Open your stack: `<student-id>-rm-stack`.
@@ -115,24 +108,21 @@ Your stack is created and shows a **Terraform configuration summary**.
    * `<student-id>-plan-job`
 6. Click **Run Plan**.
 
----
 
-## **Expected Output:**
+## Expected Output:
 
 * Job status: **Succeeded**
 * Plan output shows **resources to be created**
 
 If there is an error in the template, the plan will fail (common and normal for learners).
 
----
 
-# **4. Hands-On Task 3 — Apply the Stack (Provision Infra)**
+## 4. Hands-On Task 3 — Apply the Stack (Provision Infra)
 
 ## **Purpose:** Execute Terraform to create real cloud resources.
 
----
 
-## **Steps:**
+## Steps:
 
 1. Open your stack.
 2. Click **Terraform Actions → Apply**.
@@ -149,9 +139,8 @@ terraform apply
 
 on OCI’s managed service.
 
----
 
-## **Expected Output:**
+## Expected Output:
 
 * Job status: **Succeeded** (after a few minutes)
 * New resources appear in your compartment
@@ -160,9 +149,8 @@ on OCI’s managed service.
   * Subnet
   * Compute instance (if included)
 
----
 
-# **5. Summary of the Hands-On**
+## 5. Summary of the Hands-On
 
 In this activity, you:
 
@@ -177,15 +165,13 @@ This workflow is essential for:
 * Repeatable environment creation
 * Reduction of manual, error-prone tasks
 
----
 
-# **6. Solutions Key (Instructor Reference)**
+## 6. Solutions Key (Instructor Reference)
 
 Use this to validate student output.
 
----
 
-# **✔ Solution Key — Template Upload**
+## ✔ Solution Key — Template Upload
 
 Expected values:
 
@@ -193,9 +179,8 @@ Expected values:
 * Source: Local upload
 * Template Structure: Terraform files detected (`main.tf`, `variables.tf`, etc.)
 
----
 
-# **✔ Solution Key — Plan Job**
+## ✔ Solution Key — Plan Job
 
 Correct outcomes:
 
@@ -203,9 +188,8 @@ Correct outcomes:
 * “Resources to Add” list matches the template
 * No destructive changes unless intended
 
----
 
-# **✔ Solution Key — Apply Job**
+## ✔ Solution Key — Apply Job
 
 Correct outcomes:
 
@@ -223,6 +207,5 @@ Correct outcomes:
 
 This confirms infrastructure was provisioned successfully.
 
----
 
-# **End of Hands-On Document**
+## End of Hands-On Document

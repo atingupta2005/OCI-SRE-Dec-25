@@ -1,4 +1,4 @@
-# Day 2 – Measuring Reliability and Monitoring on OCI
+# Day 3 – Toil Reduction, Observability, and Automation
 
 ## Hands-On Lab: Building Dashboards and Visualization
 
@@ -10,7 +10,7 @@ All steps in this lab follow the latest OCI Console interface at the time of wri
 
 ---
 
-# 1. Background and Purpose
+## 1. Background and Purpose
 
 Dashboards are a core SRE tool used for:
 
@@ -24,7 +24,7 @@ This hands-on lab teaches participants how to build an OCI dashboard focused on 
 
 ---
 
-# 2. Objectives
+## 2. Objectives
 
 * Create an OCI custom dashboard.
 * Add latency, CPU, and network metric charts.
@@ -34,7 +34,7 @@ This hands-on lab teaches participants how to build an OCI dashboard focused on 
 
 ---
 
-# 3. Prerequisites
+## 3. Prerequisites
 
 ### OCI Requirements
 
@@ -49,7 +49,7 @@ This hands-on lab teaches participants how to build an OCI dashboard focused on 
 
 ---
 
-# 4. Architecture / Diagram
+## 4. Architecture / Diagram
 
 ```
              +-----------------------------+
@@ -65,7 +65,7 @@ This hands-on lab teaches participants how to build an OCI dashboard focused on 
 
 ---
 
-# 5. Step-by-Step Procedure
+## 5. Step-by-Step Procedure
 
 ## Step 1: Create a New Dashboard
 
@@ -189,7 +189,7 @@ Good dashboards follow the flow of the application:
 
 ---
 
-# 6. Expected Output / Verification
+## 6. Expected Output / Verification
 
 Your dashboard should now include:
 
@@ -212,29 +212,29 @@ Verification checklist:
 
 ---
 
-# 7. Troubleshooting Guidelines
+## 7. Troubleshooting Guidelines
 
-**No metrics visible:**
+**No metrics visible:
 
 * Check correct region and compartment.
 * Ensure Cloud Agent plugins are enabled on compute.
 
-**Latency or error metrics missing:**
+**Latency or error metrics missing:
 
 * Verify load balancer is receiving traffic.
 
-**Widget not saving:**
+**Widget not saving:
 
 * Ensure dashboard name does not contain unsupported characters.
 * Refresh browser and retry.
 
-**Alarm widget empty:**
+**Alarm widget empty:
 
 * Ensure alarms exist and are not disabled.
 
 ---
 
-# 8. Best Practices Learned
+## 8. Best Practices Learned
 
 * Group related metrics together.
 * Visualize percentiles for latency, not averages.
@@ -244,7 +244,7 @@ Verification checklist:
 
 ---
 
-# 9. Additional Notes
+## 9. Additional Notes
 
 * Dashboards will be reused in Day 4 for high-availability and failover validation exercises.
 * Teams commonly create dashboards per microservice or per environment (dev, test, prod).

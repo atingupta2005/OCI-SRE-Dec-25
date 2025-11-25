@@ -4,7 +4,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 This subtopic explains the distinctions and intersections between three engineering disciplines: **Site Reliability Engineering (SRE)**, **DevOps**, and **Platform Engineering**. IT engineers and developers often interact with all three without fully understanding how each contributes to system stability, scalability, and velocity.
 
@@ -19,7 +19,7 @@ These distinctions help engineers collaborate more effectively and understand wh
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### IT Engineers
 
@@ -44,7 +44,7 @@ SRE: Ensures reliability, observability, and operational excellence
 
 ---
 
-# 3. Key Principles
+## 3. Key Principles
 
 ### Site Reliability Engineering (SRE)
 
@@ -79,7 +79,7 @@ SRE: Ensures reliability, observability, and operational excellence
 
 ---
 
-# 4. Real-World Examples
+## 4. Real-World Examples
 
 ### Example 1 — Deployment Failure
 
@@ -98,7 +98,7 @@ SRE: Ensures reliability, observability, and operational excellence
 
 ---
 
-# 5. Case Study
+## 5. Case Study
 
 ### Scenario: Unreliable Release Process Causing Frequent Outages
 
@@ -132,7 +132,7 @@ Developers → DevOps Pipelines → Application Deployment → Application Insta
 
 ---
 
-# 6. Architecture / Workflow Diagrams
+## 6. Architecture / Workflow Diagrams
 
 ### Workflow: Where Each Discipline Operates
 
@@ -156,7 +156,7 @@ Write Code                  Deploy Code           Provide Tools/Modules
 
 ---
 
-# 7. Best Practices
+## 7. Best Practices
 
 * Clearly define ownership boundaries between SRE, DevOps, and Platform teams.
 * Developers should rely on platform-provided tooling whenever possible.
@@ -166,7 +166,7 @@ Write Code                  Deploy Code           Provide Tools/Modules
 
 ---
 
-# 8. Common Mistakes
+## 8. Common Mistakes
 
 * Treating SRE as a replacement for DevOps or IT Ops.
 * Assuming DevOps owns reliability.
@@ -176,7 +176,7 @@ Write Code                  Deploy Code           Provide Tools/Modules
 
 ---
 
-# 11. Additional Notes
+## 11. Additional Notes
 
 * Real-world organisations blend these roles differently, but the underlying principles remain consistent.
 * Understanding these distinctions helps IT engineers and developers work effectively across cross-functional teams.

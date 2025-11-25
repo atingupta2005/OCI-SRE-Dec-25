@@ -1,12 +1,12 @@
-# **Day 2 – Hands-On: Dashboards & Visualization (Using Class Enrollment App VM)**
 
-## **Instructor-Optimized, Student-Friendly Version with Solutions Key**
+## Hands-on Lab
+
+## Instructor-Optimized, Student-Friendly Version with Solutions Key
 
 In this lab, students will learn to build monitoring dashboards in OCI and create visual panels aligned with SRE practices. The focus is on **latency**, **uptime**, and **alarm awareness**, all tied to the Compute instance running the **Class Enrollment Web App**.
 
----
 
-# **1. Objective of This Hands-On**
+## 1. Objective of This Hands-On
 
 By the end of this exercise, students will:
 
@@ -17,13 +17,12 @@ By the end of this exercise, students will:
 
 This is foundational for later topics: SLO validation, alert tuning, and incident review.
 
----
 
-# **2. Background Before Hands-On**
+## 2. Background Before Hands-On
 
 Students should recall:
 
-## **2.1 Dashboards Overview**
+## 2.1 Dashboards Overview
 
 OCI Dashboards allow you to visualize:
 
@@ -38,9 +37,8 @@ Dashboards help SREs:
 * Spot patterns and anomalies
 * Investigate incidents
 
----
 
-## **2.2 SLO-Focused Panels**
+## 2.2 SLO-Focused Panels
 
 SRE dashboards prioritize panels that show:
 
@@ -51,9 +49,8 @@ SRE dashboards prioritize panels that show:
 
 This hands-on focuses on the first two.
 
----
 
-# **3. Hands-On Task 1 — Build a Dashboard for Latency & Uptime**
+## 3. Hands-On Task 1 — Build a Dashboard for Latency & Uptime
 
 ## **Purpose:** Create a clear view of how the system is performing.
 
@@ -62,9 +59,8 @@ You will build **two essential panels**:
 1. **Latency panel** (proxy metric using CPU + network if no custom app metrics exist)
 2. **Uptime panel** (instance state + health)
 
----
 
-## **Steps:**
+## Steps:
 
 1. Open **Navigation Menu (☰) → Observability & Management → Dashboards**.
 2. Click **Create Dashboard**.
@@ -76,9 +72,8 @@ You will build **two essential panels**:
 
 You will now land in an empty dashboard.
 
----
 
-## **A. Add Latency Panel (Proxy Metrics)**
+## A. Add Latency Panel (Proxy Metrics)
 
 Since the Class Enrollment App does not emit custom latency metrics by default, you will use **CPU + Network activity** as latency proxies.
 
@@ -104,9 +99,8 @@ Since the Class Enrollment App does not emit custom latency metrics by default, 
 Repeat to add a **NetworkBytesIn** or **NetworkBytesOut** panel.
 These spikes often correlate with user actions.
 
----
 
-## **B. Add Uptime Panel (Instance Health)**
+## B. Add Uptime Panel (Instance Health)
 
 1. Click **Add Widget → Metric Chart**.
 2. Namespace:
@@ -123,17 +117,15 @@ Alternative:
 
 * Use a widget showing the instance **Lifecycle State** if available.
 
----
 
-# **4. Hands-On Task 2 — Add Alarm Widgets**
+## 4. Hands-On Task 2 — Add Alarm Widgets
 
 ## **Purpose:** Surface current alarms directly on the dashboard.
 
 This helps real SREs quickly detect outages.
 
----
 
-## **Steps:**
+## Steps:
 
 1. Click **Add Widget → Alarm**.
 2. Choose your previously created CPU alarm:
@@ -146,9 +138,8 @@ This helps real SREs quickly detect outages.
 
 Repeat if you create additional alarms (latency, uptime, etc.).
 
----
 
-## **What You Should See on Your Dashboard:**
+## What You Should See on Your Dashboard:
 
 * **Latency proxy panel** (CPU charts)
 * **Network activity panel**
@@ -157,9 +148,8 @@ Repeat if you create additional alarms (latency, uptime, etc.).
 
 The dashboard now acts as a basic SRE observability console.
 
----
 
-# **5. Summary of the Hands-On**
+## 5. Summary of the Hands-On
 
 Today you built:
 
@@ -170,15 +160,13 @@ Today you built:
 
 These are the foundations of an end-to-end observability system.
 
----
 
-# **6. Solutions Key (Instructor Reference)**
+## 6. Solutions Key (Instructor Reference)
 
 Use this to verify student dashboards.
 
----
 
-# **✔ Solution Key — Task 1: Latency & Uptime Dashboard**
+## ✔ Solution Key — Task 1: Latency & Uptime Dashboard
 
 ### Expected Widgets:
 
@@ -200,9 +188,8 @@ Use this to verify student dashboards.
 
 SRE dashboards must highlight **user-facing performance**, even if via proxy metrics.
 
----
 
-# **✔ Solution Key — Task 2: Alarm Widgets**
+## ✔ Solution Key — Task 2: Alarm Widgets
 
 ### Expected Alarm Widget:
 

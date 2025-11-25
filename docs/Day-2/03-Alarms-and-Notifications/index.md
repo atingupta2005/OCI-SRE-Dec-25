@@ -8,7 +8,7 @@
 
 ---
 
-# 1. Concept Overview
+## 1. Concept Overview
 
 OCI Alarms and Notifications form the operational backbone for detecting and communicating reliability issues in real time. Once SLIs and SLOs are defined, alarms turn SLO breaches or system anomalies into actionable alerts.
 
@@ -23,7 +23,7 @@ Key capabilities:
 
 ---
 
-# 2. How This Applies to IT Engineers and Developers
+## 2. How This Applies to IT Engineers and Developers
 
 ### IT Engineers
 
@@ -44,7 +44,7 @@ Metrics → Alarm Rule → Notification → Human / Automation
 
 ---
 
-# 3. Key Concepts
+## 3. Key Concepts
 
 ## 3.1 Alarm Types
 
@@ -76,7 +76,7 @@ A topic may have multiple subscriptions:
 
 ---
 
-# 4. Real-World Examples
+## 4. Real-World Examples
 
 ### Example 1 — CPU Spike on Production VM
 
@@ -96,7 +96,7 @@ A topic may have multiple subscriptions:
 
 ---
 
-# 5. Case Study
+## 5. Case Study
 
 ### Scenario: Checkout API experiencing intermittent failures
 
@@ -125,7 +125,7 @@ User → LB → Checkout API → Database
 
 ---
 
-# 6. Hands-On Exercise (Summary Only)
+## 6. Hands-On Exercise (Summary Only)
 
 A detailed hands-on lab will be created separately.
 It will include:
@@ -137,7 +137,7 @@ It will include:
 
 ---
 
-# 7. Architecture / Workflow Diagrams
+## 7. Architecture / Workflow Diagrams
 
 ### Diagram 1 — Alarm Flow
 
@@ -173,7 +173,7 @@ THEN trigger alarm
 
 ---
 
-# 8. Best Practices
+## 8. Best Practices
 
 * Configure alarms for symptoms, not infrastructure only.
 * Avoid overly sensitive thresholds causing alert fatigue.
@@ -183,7 +183,7 @@ THEN trigger alarm
 
 ---
 
-# 9. Common Mistakes
+## 9. Common Mistakes
 
 * Relying only on CPU alarms without application-level alarms.
 * Not testing alarms after creation.
@@ -192,7 +192,7 @@ THEN trigger alarm
 
 ---
 
-# 10. Checklist
+## 10. Checklist
 
 * Understand alarm types and states.
 * Know how to configure notification topics.
@@ -201,6 +201,6 @@ THEN trigger alarm
 
 ---
 
-# 11. Additional Notes
+## 11. Additional Notes
 
 * The upcoming hands-on lab will focus on creating alarms and email notifications using OCI Monitoring and Notifications.

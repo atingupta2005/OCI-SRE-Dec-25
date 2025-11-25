@@ -1,14 +1,14 @@
-# **Day 3 – Hands-On: Observability Principles (Using Class Enrollment App VM)**
 
-## **Student-Friendly Document with Solutions Key**
+## Hands-on Lab
+
+## Student-Friendly Document with Solutions Key
 
 This hands-on introduces students to the fundamentals of **observability** and helps them practice enabling and viewing system logs in OCI. The exercises use the Compute instance hosting the **Class Enrollment Web App**.
 
----
 
-# **1. Background Concepts (Short, Clear & Practical)**
+## 1. Background Concepts (Short, Clear & Practical)
 
-## **1.1 Monitoring vs Observability**
+## 1.1 Monitoring vs Observability
 
 **Monitoring** answers: *“Is the system healthy?”*
 
@@ -22,30 +22,29 @@ This hands-on introduces students to the fundamentals of **observability** and h
 * Handles unknown failure modes
 * Uses metrics, logs, and traces together
 
-### **Simple example:**
+### Simple example:
 
 * **Monitoring:** CPU is 95% → anomaly detected
 * **Observability:** Logs show DB errors → traces show slow queries → root cause found
 
----
 
-## **1.2 Observability Signals**
+## 1.2 Observability Signals
 
 Observability in SRE relies on **three core signals**:
 
-### **1. Metrics**
+### 1. Metrics
 
 * Numerical values over time
 * Fast to query, great for dashboards
 * Examples: CPU, latency, request count
 
-### **2. Logs**
+### 2. Logs
 
 * Text-based, detailed events
 * Useful for debugging specific issues
 * Examples: errors, warnings, access logs
 
-### **3. Traces**
+### 3. Traces
 
 * End-to-end request path tracking
 * Shows where time is spent in request flows
@@ -53,9 +52,8 @@ Observability in SRE relies on **three core signals**:
 
 In this lab, students focus on **logs**.
 
----
 
-## **1.3 Instrumentation Basics**
+## 1.3 Instrumentation Basics
 
 Instrumentation is how systems generate observability data.
 
@@ -65,9 +63,8 @@ Instrumentation is how systems generate observability data.
 
 The Class Enrollment App uses Flask + React, which naturally produces application logs. OCI Compute produces **system logs**, which we will enable.
 
----
 
-# **2. Hands-On Task 1 — Enable System Logs for Compute Instance**
+## 2. Hands-On Task 1 — Enable System Logs for Compute Instance
 
 ## **Purpose:** Ensure your VM emits system logs to OCI Logging.
 
@@ -77,9 +74,8 @@ These logs help SREs:
 * Debug app crashes
 * Track network or disk failures
 
----
 
-## **Steps:**
+## Steps:
 
 1. Open the **Navigation Menu (☰)**.
 2. Go to **Compute → Instances**.
@@ -94,22 +90,19 @@ These logs help SREs:
    * **Source:** System logs
 8. Click **Enable Log**.
 
----
 
-## **Expected Result:**
+## Expected Result:
 
 * System log begins receiving entries within a few minutes
 * Status shows **Active**
 
----
 
-# **3. Hands-On Task 2 — View Logs in OCI Logging**
+## 3. Hands-On Task 2 — View Logs in OCI Logging
 
 ## **Purpose:** Learn how to explore and analyze system logs.
 
----
 
-## **Steps:**
+## Steps:
 
 1. Open **Navigation Menu → Observability & Management → Logging**.
 2. Click **Log Groups**.
@@ -122,18 +115,16 @@ These logs help SREs:
    * `text LIKE 'systemd'`
    * `text LIKE 'ssh'`
 
----
 
-## **What You Should See:**
+## What You Should See:
 
 * Boot messages
 * System events (systemd services)
 * SSH login attempts
 * Kernel messages (depending on OS)
 
----
 
-# **4. Summary of the Hands-On**
+## 4. Summary of the Hands-On
 
 In this exercise, you learned how to:
 
@@ -144,15 +135,13 @@ In this exercise, you learned how to:
 
 These form the foundation for debugging, incident resolution, and SLO validation.
 
----
 
-# **5. Solutions Key (Instructor Reference)**
+## 5. Solutions Key (Instructor Reference)
 
 Use this section to verify student results.
 
----
 
-# **✔ Solution Key — Task 1: Enable System Logs**
+## ✔ Solution Key — Task 1: Enable System Logs
 
 ### Expected Settings:
 
@@ -166,9 +155,8 @@ Use this section to verify student results.
 * VM syslog entries appear within minutes
 * Log group shows new log stream
 
----
 
-# **✔ Solution Key — Task 2: View Logs in Logging Service**
+## ✔ Solution Key — Task 2: View Logs in Logging Service
 
 ### Expected Logs to Appear:
 
@@ -191,5 +179,4 @@ These logs:
 * Support troubleshooting of the Class Enrollment App
 * Provide audit-level visibility into system events
 
----
 
